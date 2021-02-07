@@ -2,14 +2,13 @@ import React from 'react';
 import SmallMovieCard from "../small-movie-card";
 import PropTypes from 'prop-types';
 
-const MOVIE_CARDS_ID = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-// Из задания я поняла что карточки мы пока делаем одинаковые и это временное решение для создания ключей
+const MOVIE_CARD_COUNT = 20;
 
 const MainPage = (props) => {
   const {MainMovie} = props;
 
-  const movieList = MOVIE_CARDS_ID.map((id) =>
-    <SmallMovieCard key = {`movieCard-${id}`}/>
+  const movieList = [...new Array(MOVIE_CARD_COUNT).keys()].map((item) =>
+    <SmallMovieCard key = {`movieCard-${item}`}/>
   );
 
   return (
@@ -134,11 +133,11 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  MainMovie: {
+  MainMovie: PropTypes.shape({
     TITLE: PropTypes.string.isRequired,
     GENRE: PropTypes.string.isRequired,
     YEAR: PropTypes.number.isRequired
-  }
+  })
 };
 
 export default MainPage;
