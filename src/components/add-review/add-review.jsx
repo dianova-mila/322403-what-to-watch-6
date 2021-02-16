@@ -1,23 +1,36 @@
-import React from "react";
+import React, {useState} from "react";
+import {Link, useParams} from "react-router-dom";
+import filmsPropTypes from "../films-prop-types";
 
-const AddReview = () => {
+const AddReview = (props) => {
+  const {films} = props;
+  const {id} = useParams();
+  const [reviewForm, setReviewForm] = useState({rating: ``, text: ``});
+  const movie = films.find((film) => film.id === id);
+
+  const ratingChangeHandler = (evt) => {
+    setReviewForm({...reviewForm, rating: evt.target.value});
+  };
+
   return (
     <React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+            <img
+              src={movie.backgroundImage}
+              alt={movie.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header movie-card__head">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <Link to="/" className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <div className="user-block">
@@ -29,26 +42,26 @@ const AddReview = () => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="movie-card__title">{movie.name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">Drama</span>
-                <span className="movie-card__year">2014</span>
+                <span className="movie-card__genre">{movie.genre}</span>
+                <span className="movie-card__year">{movie.released}</span>
               </p>
 
               <div className="movie-card__buttons">
                 <button className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHef="#play-s"></use>
+                    <use xlinkHref="#play-s" />
                   </svg>
                   <span>Play</span>
                 </button>
                 <button className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
+                    <use xlinkHref="#add" />
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                <Link to={`/films/${movie.id}/review`} className="btn movie-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -57,7 +70,10 @@ const AddReview = () => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
+              <img
+                src={movie.posterImage}
+                alt={movie.name}
+                width="218"
                 height="327"/>
             </div>
 
@@ -75,6 +91,59 @@ const AddReview = () => {
                   </li>
                 </ul>
               </nav>
+
+              <div className="add-review">
+                <form action="#" className="add-review__form">
+                  <div className="rating">
+                    <div className="rating__stars" onChange={ratingChangeHandler}>
+                      <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
+                      <label className="rating__label" htmlFor="star-1">Rating 1</label>
+
+                      <input className="rating__input" id="star-2" type="radio" name="rating" value="2"/>
+                      <label className="rating__label" htmlFor="star-2">Rating 2</label>
+
+                      <input className="rating__input" id="star-3" type="radio" name="rating" value="3"/>
+                      <label className="rating__label" htmlFor="star-3">Rating 3</label>
+
+                      <input className="rating__input" id="star-4" type="radio" name="rating" value="4"/>
+                      <label className="rating__label" htmlFor="star-4">Rating 4</label>
+
+                      <input className="rating__input" id="star-5" type="radio" name="rating" value="5"/>
+                      <label className="rating__label" htmlFor="star-5">Rating 5</label>
+
+                      <input className="rating__input" id="star-6" type="radio" name="rating" value="6"/>
+                      <label className="rating__label" htmlFor="star-6">Rating 6</label>
+
+                      <input className="rating__input" id="star-7" type="radio" name="rating" value="7"/>
+                      <label className="rating__label" htmlFor="star-7">Rating 7</label>
+
+                      <input className="rating__input" id="star-8" type="radio" name="rating" value="8"/>
+                      <label className="rating__label" htmlFor="star-8">Rating 8</label>
+
+                      <input className="rating__input" id="star-9" type="radio" name="rating" value="9"/>
+                      <label className="rating__label" htmlFor="star-9">Rating 9</label>
+
+                      <input className="rating__input" id="star-10" type="radio" name="rating" value="10"/>
+                      <label className="rating__label" htmlFor="star-10">Rating 10</label>
+                    </div>
+                  </div>
+
+                  <div className="add-review__text">
+                    <textarea
+                      className="add-review__textarea"
+                      name="review-text"
+                      id="review-text"
+                      placeholder="Review text"
+                      onChange={(evt) => {
+                        setReviewForm({...reviewForm, text: evt.target.value});
+                      }}/>
+                    <div className="add-review__submit">
+                      <button className="add-review__btn" type="submit">Post</button>
+                    </div>
+
+                  </div>
+                </form>
+              </div>
 
               <div className="movie-card__reviews movie-card__row">
                 <div className="movie-card__reviews-col">
@@ -232,6 +301,10 @@ const AddReview = () => {
       </div>
     </React.Fragment>
   );
+};
+
+AddReview.propTypes = {
+  films: filmsPropTypes
 };
 
 export default AddReview;
