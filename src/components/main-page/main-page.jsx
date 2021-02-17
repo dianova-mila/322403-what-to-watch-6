@@ -1,15 +1,10 @@
 import React from 'react';
-import SmallMovieCard from "../small-movie-card";
+import MoviesList from "../movies-list";
 import PropTypes from 'prop-types';
-
-const MOVIE_CARD_COUNT = 20;
+import filmsPropTypes from "../films-prop-types";
 
 const MainPage = (props) => {
-  const {MainMovie} = props;
-
-  const movieList = [...new Array(MOVIE_CARD_COUNT).keys()].map((item) =>
-    <SmallMovieCard key = {`movieCard-${item}`}/>
-  );
+  const {MainMovie, films} = props;
 
   return (
     <React.Fragment>
@@ -52,13 +47,13 @@ const MainPage = (props) => {
               <div className="movie-card__buttons">
                 <button className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
+                    <use xlinkHref="#play-s" />
                   </svg>
                   <span>Play</span>
                 </button>
                 <button className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
+                    <use xlinkHref="#add" />
                   </svg>
                   <span>My list</span>
                 </button>
@@ -106,7 +101,7 @@ const MainPage = (props) => {
           </ul>
 
           <div className="catalog__movies-list">
-            {movieList}
+            <MoviesList films={films} />
           </div>
 
           <div className="catalog__more">
@@ -137,7 +132,8 @@ MainPage.propTypes = {
     TITLE: PropTypes.string.isRequired,
     GENRE: PropTypes.string.isRequired,
     YEAR: PropTypes.number.isRequired
-  })
+  }),
+  films: filmsPropTypes
 };
 
 export default MainPage;
