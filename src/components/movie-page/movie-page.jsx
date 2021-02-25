@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 import filmsPropTypes from "../films-prop-types";
 
 const Rating = {
-  NORMAl: 3,
+  NORMAL: 3,
   GOOD: 5,
   VERY_GOOD: 8,
   AWESOME: 10
@@ -16,9 +16,9 @@ const MoviePage = (props) => {
   const movie = films.find((film) => film.id === id);
 
   const getRating = (rating) => {
-    if (rating <= Rating.NORMAl) {
+    if (rating <= Rating.NORMAL) {
       return `Bad`;
-    } else if (rating > Rating.NORMAl && rating <= Rating.GOOD) {
+    } else if (rating > Rating.NORMAL && rating <= Rating.GOOD) {
       return `Normal`;
     } else if (rating > Rating.GOOD && rating <= Rating.VERY_GOOD) {
       return `Good`;

@@ -12,13 +12,13 @@ import NotFound from "../not-found/not-found";
 
 
 const App = (props) => {
-  const {MainMovie, films} = props;
+  const {mainMovie, films} = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <MainPage MainMovie={MainMovie} films={films}/>
+          <MainPage mainMovie={mainMovie} films={films}/>
         </Route>
         <Route exact path="/login">
           <SignIn />
@@ -56,10 +56,10 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  MainMovie: PropTypes.shape({
-    TITLE: PropTypes.string.isRequired,
-    GENRE: PropTypes.string.isRequired,
-    YEAR: PropTypes.number.isRequired
+  mainMovie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired
   }),
   films: filmsPropTypes
 };

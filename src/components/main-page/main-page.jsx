@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import filmsPropTypes from "../films-prop-types";
 
 const MainPage = (props) => {
-  const {MainMovie, films} = props;
+  const {mainMovie, films} = props;
 
   return (
     <React.Fragment>
@@ -38,10 +38,10 @@ const MainPage = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{MainMovie.TITLE}</h2>
+              <h2 className="movie-card__title">{mainMovie.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{MainMovie.GENRE}</span>
-                <span className="movie-card__year">{MainMovie.YEAR}</span>
+                <span className="movie-card__genre">{mainMovie.genre}</span>
+                <span className="movie-card__year">{mainMovie.year}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -128,10 +128,10 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  MainMovie: PropTypes.shape({
-    TITLE: PropTypes.string.isRequired,
-    GENRE: PropTypes.string.isRequired,
-    YEAR: PropTypes.number.isRequired
+  mainMovie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired
   }),
   films: filmsPropTypes
 };
