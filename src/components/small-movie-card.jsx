@@ -1,7 +1,10 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
+import moviePropTypes from "./movie-prop-types";
 import VideoPlayer from "./video-player";
+
+const ONE_SECOND = 1000;
 
 const SmallMovieCard = (props) => {
   const {movie} = props;
@@ -15,7 +18,7 @@ const SmallMovieCard = (props) => {
         onMouseOver={() => {
           setTimer(setTimeout(() => {
             setIsPlayerActive(true);
-          }, 1000));
+          }, ONE_SECOND));
         }}
         onMouseOut={() => {
           setIsPlayerActive(false);
@@ -40,12 +43,7 @@ const SmallMovieCard = (props) => {
 };
 
 SmallMovieCard.propTypes = {
-  movie: PropTypes.shape({
-    previewImage: PropTypes.string.isRequired,
-    previewVideoLink: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired
-  }),
+  movie: moviePropTypes,
   onMouseOver: PropTypes.func
 };
 
