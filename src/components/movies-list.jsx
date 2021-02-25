@@ -1,5 +1,4 @@
-import React from 'react';
-import {useState} from 'react';
+import React, {useState} from "react";
 import SmallMovieCard from "./small-movie-card";
 import filmsPropTypes from "./films-prop-types";
 
