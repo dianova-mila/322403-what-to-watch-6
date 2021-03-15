@@ -1,11 +1,57 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import MoviesList from "../movies-list";
 import PropTypes from "prop-types";
 import filmsPropTypes from "../films-prop-types";
 import GenreList from "../genre-list";
+import ShowMore from "../show_more";
+import {ActionCreator} from "../../store/actions";
+import {connect} from "react-redux";
+
+const MOVIES_CARDS_IN_STEP = 8;
+
+const collectGenres = (films) => {
+  const genres = [...new Set(films.map((item) => item.genre))];
+  genres.unshift(`All genres`);
+  return genres;
+};
+
+const getMoviesToShow = (movies, maxDisplayedMovies) => {
+  if (movies <= maxDisplayedMovies.length) {
+    return movies;
+  }
+
+  return movies.slice(0, maxDisplayedMovies);
+};
 
 const MainPage = (props) => {
-  const {mainMovie, films} = props;
+  const {mainMovie, films, onSelectGenre, movieList, onChangeGenre, currentGenre} = props;
+  const [displayedMovies, setDisplayedMovies] = useState({
+    maxDisplayedMovies: MOVIES_CARDS_IN_STEP,
+    movies: movieList,
+  });
+  const [showMoreButtonActive, setShowMoreButtonActive] = useState(true);
+
+  useEffect(() => {
+    setDisplayedMovies((prevDisplayedMovies) => ({
+      ...prevDisplayedMovies,
+      movies: getMoviesToShow(movieList, displayedMovies.maxDisplayedMovies)
+    }));
+
+    if (displayedMovies.maxDisplayedMovies >= movieList.length) {
+      setShowMoreButtonActive(false);
+    } else {
+      setShowMoreButtonActive(true);
+    }
+  }, [movieList]);
+
+  useEffect(() => {
+    onChangeGenre(currentGenre, films);
+
+    setDisplayedMovies((prevDisplayedMovies) => ({
+      ...prevDisplayedMovies,
+      maxDisplayedMovies: MOVIES_CARDS_IN_STEP
+    }));
+  }, [currentGenre]);
 
   return (
     <React.Fragment>
@@ -68,13 +114,26 @@ const MainPage = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenreList films={films}/>
+          <GenreList
+            genres={collectGenres(films)}
+            onSelectGenre={onSelectGenre}
+          />
 
-          <MoviesList films={films} />
+          <MoviesList films={displayedMovies.movies} />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <ShowMore
+            isActive={showMoreButtonActive}
+            onClick={() => {
+              setDisplayedMovies(() => ({
+                maxDisplayedMovies: displayedMovies.maxDisplayedMovies + MOVIES_CARDS_IN_STEP,
+                movies: getMoviesToShow(movieList, displayedMovies.maxDisplayedMovies + MOVIES_CARDS_IN_STEP)
+              }));
+
+              if (displayedMovies.maxDisplayedMovies + MOVIES_CARDS_IN_STEP >= movieList.length) {
+                setShowMoreButtonActive(false);
+              }
+            }}
+          />
         </section>
 
         <footer className="page-footer">
@@ -101,7 +160,26 @@ MainPage.propTypes = {
     genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired
   }),
-  films: filmsPropTypes
+  films: filmsPropTypes,
+  movieList: filmsPropTypes,
+  currentGenre: PropTypes.string.isRequired,
+  onSelectGenre: PropTypes.func.isRequired,
+  onChangeGenre: PropTypes.func.isRequired
 };
 
-export default MainPage;
+const mapStateToProps = (state) => ({
+  movieList: state.movieList,
+  currentGenre: state.currentGenre
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onSelectGenre(genre) {
+    dispatch(ActionCreator.changeGenre(genre));
+  },
+  onChangeGenre(genre, films) {
+    dispatch(ActionCreator.getMovieList(genre, films));
+  },
+});
+
+export {MainPage};
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

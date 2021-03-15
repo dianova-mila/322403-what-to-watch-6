@@ -1,15 +1,14 @@
 import React, {useState} from "react";
 import SmallMovieCard from "./small-movie-card";
 import filmsPropTypes from "./films-prop-types";
-import {connect} from "react-redux";
 
 const MoviesList = (props) => {
-  const {movieList} = props;
+  const {films} = props;
   const [, setCurrentMovieId] = useState(0);
 
   return (
     <div className="catalog__movies-list">
-      {movieList.map((movie) =>
+      {films.map((movie) =>
         <SmallMovieCard
           movie={movie}
           key={`movieCard-${movie.id}`}
@@ -22,12 +21,7 @@ const MoviesList = (props) => {
 };
 
 MoviesList.propTypes = {
-  movieList: filmsPropTypes
+  films: filmsPropTypes
 };
 
-const mapStateToProps = (state) => ({
-  movieList: state.movieList,
-});
-
-export {MoviesList};
-export default connect(mapStateToProps)(MoviesList);
+export default MoviesList;
