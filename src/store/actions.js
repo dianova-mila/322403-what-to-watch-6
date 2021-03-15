@@ -16,11 +16,9 @@ const ActionCreator = {
       };
     }
 
-    const moviesByGenre = movies.filter((movie) => movie.genre === currentGenre);
-
     return {
       type: ActionType.GET_MOVIE_LIST,
-      movieList: moviesByGenre
+      movieList: movies.filter((movie) => movie.genre === currentGenre)
     };
   }
 };
