@@ -1,9 +1,10 @@
-import films from "../mocks/films";
 import {ActionType} from "./actions";
 
 const initialState = {
   currentGenre: `All genres`,
-  movieList: films
+  movieList: [],
+  movies: [],
+  isDataLoaded: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -18,6 +19,14 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         movieList: action.movieList
+      };
+
+    case ActionType.LOAD_MOVIES:
+      return {
+        ...state,
+        movieList: action.payload,
+        movies: action.payload,
+        isDataLoaded: true
       };
   }
 

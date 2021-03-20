@@ -6,6 +6,8 @@ import GenreList from "../genre-list";
 import ShowMore from "../show_more";
 import {ActionCreator} from "../../store/actions";
 import {connect} from "react-redux";
+import Spinner from "../spinner/spinner";
+import {fetchMovies} from "../../store/api-actions";
 
 const MOVIES_CARDS_IN_STEP = 8;
 
@@ -24,7 +26,8 @@ const getMoviesToShow = (movies, maxDisplayedMovies) => {
 };
 
 const MainPage = (props) => {
-  const {mainMovie, films, onSelectGenre, movieList, onChangeGenre, currentGenre} = props;
+  const {mainMovie, movies, onSelectGenre, movieList, onChangeGenre, currentGenre, isDataLoaded, onLoadData} = props;
+
   const [displayedMovies, setDisplayedMovies] = useState({
     maxDisplayedMovies: MOVIES_CARDS_IN_STEP,
     movies: movieList,
@@ -45,13 +48,25 @@ const MainPage = (props) => {
   }, [movieList]);
 
   useEffect(() => {
-    onChangeGenre(currentGenre, films);
+    onChangeGenre(currentGenre, movies);
 
     setDisplayedMovies((prevDisplayedMovies) => ({
       ...prevDisplayedMovies,
       maxDisplayedMovies: MOVIES_CARDS_IN_STEP
     }));
   }, [currentGenre]);
+
+  useEffect(() => {
+    if (!isDataLoaded) {
+      onLoadData();
+    }
+  }, [isDataLoaded]);
+
+  if (!isDataLoaded) {
+    return (
+      <Spinner />
+    );
+  }
 
   return (
     <React.Fragment>
@@ -115,7 +130,7 @@ const MainPage = (props) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <GenreList
-            genres={collectGenres(films)}
+            genres={collectGenres(movies)}
             onSelectGenre={onSelectGenre}
           />
 
@@ -160,8 +175,10 @@ MainPage.propTypes = {
     genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired
   }),
-  films: filmsPropTypes,
+  movies: filmsPropTypes,
   movieList: filmsPropTypes,
+  isDataLoaded: PropTypes.bool.isRequired,
+  onLoadData: PropTypes.func.isRequired,
   currentGenre: PropTypes.string.isRequired,
   onSelectGenre: PropTypes.func.isRequired,
   onChangeGenre: PropTypes.func.isRequired
@@ -169,7 +186,9 @@ MainPage.propTypes = {
 
 const mapStateToProps = (state) => ({
   movieList: state.movieList,
-  currentGenre: state.currentGenre
+  movies: state.movies,
+  currentGenre: state.currentGenre,
+  isDataLoaded: state.isDataLoaded
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -178,6 +197,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onChangeGenre(genre, films) {
     dispatch(ActionCreator.getMovieList(genre, films));
+  },
+  onLoadData() {
+    dispatch(fetchMovies());
   },
 });
 
