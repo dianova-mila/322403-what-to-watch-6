@@ -4,7 +4,8 @@ const initialState = {
   currentGenre: `All genres`,
   movieList: [],
   movies: [],
-  isDataLoaded: false
+  isDataLoaded: false,
+  authorizationStatus: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -27,6 +28,12 @@ const reducer = (state = initialState, action) => {
         movieList: action.payload,
         movies: action.payload,
         isDataLoaded: true
+      };
+
+    case ActionType.REQUIRED_AUTHORIZATION:
+      return {
+        ...state,
+        authorizationStatus: action.payload,
       };
   }
 

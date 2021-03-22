@@ -6,6 +6,7 @@ import GenreList from "../genre-list";
 import ShowMore from "../show_more";
 import {ActionCreator} from "../../store/actions";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 import Spinner from "../spinner/spinner";
 import {fetchMovies} from "../../store/api-actions";
 
@@ -26,7 +27,18 @@ const getMoviesToShow = (movies, maxDisplayedMovies) => {
 };
 
 const MainPage = (props) => {
-  const {mainMovie, movies, onSelectGenre, movieList, onChangeGenre, currentGenre, isDataLoaded, onLoadData} = props;
+  const {
+    mainMovie,
+    movies,
+    onSelectGenre,
+    movieList,
+    onChangeGenre,
+    currentGenre,
+    isDataLoaded,
+    onLoadData,
+    authorizationStatus,
+    onUserAvatarClick
+  } = props;
 
   const [displayedMovies, setDisplayedMovies] = useState({
     maxDisplayedMovies: MOVIES_CARDS_IN_STEP,
@@ -87,9 +99,18 @@ const MainPage = (props) => {
           </div>
 
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-            </div>
+            {authorizationStatus
+              ? <div className="user-block__avatar">
+                <img
+                  src="img/avatar.jpg"
+                  alt="User avatar"
+                  width="63"
+                  height="63"
+                  onClick={() => onUserAvatarClick()}
+                />
+              </div>
+              : <Link to="/login" className="user-block__link">Sign in</Link>
+            }
           </div>
         </header>
 
@@ -181,14 +202,17 @@ MainPage.propTypes = {
   onLoadData: PropTypes.func.isRequired,
   currentGenre: PropTypes.string.isRequired,
   onSelectGenre: PropTypes.func.isRequired,
-  onChangeGenre: PropTypes.func.isRequired
+  onChangeGenre: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.bool.isRequired,
+  onUserAvatarClick: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   movieList: state.movieList,
   movies: state.movies,
   currentGenre: state.currentGenre,
-  isDataLoaded: state.isDataLoaded
+  isDataLoaded: state.isDataLoaded,
+  authorizationStatus: state.authorizationStatus
 });
 
 const mapDispatchToProps = (dispatch) => ({
