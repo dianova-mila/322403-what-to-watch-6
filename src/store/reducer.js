@@ -4,6 +4,9 @@ const initialState = {
   currentGenre: `All genres`,
   movieList: [],
   movies: [],
+  movie: {},
+  comments: [],
+  isOneMovieLoaded: false,
   isDataLoaded: false,
   authorizationStatus: false
 };
@@ -28,6 +31,19 @@ const reducer = (state = initialState, action) => {
         movieList: action.payload,
         movies: action.payload,
         isDataLoaded: true
+      };
+
+    case ActionType.LOAD_ONE_MOVIE:
+      return {
+        ...state,
+        movie: action.payload,
+        isOneMovieLoaded: true,
+      };
+
+    case ActionType.LOAD_COMMENTS:
+      return {
+        ...state,
+        comments: action.payload
       };
 
     case ActionType.REQUIRED_AUTHORIZATION:
