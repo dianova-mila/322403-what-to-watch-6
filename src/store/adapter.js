@@ -31,4 +31,4 @@ const adaptMovieToClient = (movie) => {
 
 const adaptMoviesToClient = (movies) => movies.map((movie) => adaptMovieToClient(movie));
 
-export {adaptMoviesToClient};
+export {adaptMovieToClient, adaptMoviesToClient};

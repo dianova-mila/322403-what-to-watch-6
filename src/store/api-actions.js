@@ -1,10 +1,21 @@
 import {ActionCreator} from "./actions";
-import {adaptMoviesToClient} from "./adapter";
+import {adaptMovieToClient, adaptMoviesToClient} from "./adapter";
 
 const fetchMovies = () => (dispatch, _getState, api) => (
   api.get(`/films`)
     .then(({data}) => dispatch(ActionCreator.loadMovies(adaptMoviesToClient(data))))
 );
+
+const fetchOneMovie = (id) => (dispatch, _getState, api) => (
+  Promise.all([
+    api.get(`/films/${id}`),
+    api.get(`/comments/${id}`)
+  ]).then(([movie, comments]) => {
+    dispatch(ActionCreator.loadComments(comments.data));
+    dispatch(ActionCreator.loadOneMovie(adaptMovieToClient(movie.data)));
+  }).catch(() => dispatch(ActionCreator.redirectToRoute(`/404`)))
+);
+
 
 const checkAuth = () => (dispatch, _getState, api) => (
   api.get(`/login`)
@@ -18,4 +29,10 @@ const login = ({login: email, password}) => (dispatch, _getState, api) => (
     .then(() => dispatch(ActionCreator.redirectToRoute(`/`)))
 );
 
-export {fetchMovies, checkAuth, login};
+const addReview = ({rating, comment}, id, onError) => (dispatch, _getState, api) => (
+  api.post(`/comments/${id}`, {rating, comment})
+    .then(() => dispatch(ActionCreator.redirectToRoute(`/films/${id}`)))
+    .catch(() => onError())
+);
+
+export {fetchMovies, fetchOneMovie, checkAuth, login, addReview};

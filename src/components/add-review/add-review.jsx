@@ -1,16 +1,53 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
-import filmsPropTypes from "../films-prop-types";
+import PropTypes from "prop-types";
+import Spinner from "../spinner/spinner";
+import {fetchOneMovie, addReview} from "../../store/api-actions";
+import {connect} from "react-redux";
+import moviePropTypes from "../movie-prop-types";
+import commentsPropTypes from "../comments-prop-types";
+import dayjs from "dayjs";
+import Toast from "../toast/toast";
 
 const AddReview = (props) => {
-  const {films} = props;
+  const {movie, comments, isOneMovieLoaded, onLoadData, onSubmit} = props;
   const {id} = useParams();
-  const [reviewForm, setReviewForm] = useState({rating: ``, text: ``});
-  const movie = films.find((film) => film.id === id);
+  const [reviewForm, setReviewForm] = useState({rating: ``, comment: ``});
+  const [showError, setShowError] = useState(false);
 
   const ratingChangeHandler = (evt) => {
-    setReviewForm({...reviewForm, rating: evt.target.value});
+    const currentRating = evt.target.value;
+    setReviewForm((prevReview) => ({...prevReview, rating: currentRating}));
   };
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+
+    onSubmit(reviewForm, id, onAddReviewError);
+  };
+
+  const onAddReviewError = () => {
+    setShowError(true);
+    setTimeout(() => {
+      setShowError(false);
+    }, 10000);
+  };
+
+  useEffect(() => {
+    onLoadData(id);
+  }, [id]);
+
+  useEffect(() => {
+    if (!isOneMovieLoaded) {
+      onLoadData(id);
+    }
+  }, [isOneMovieLoaded]);
+
+  if (!isOneMovieLoaded) {
+    return (
+      <Spinner />
+    );
+  }
 
   return (
     <React.Fragment>
@@ -93,7 +130,12 @@ const AddReview = (props) => {
               </nav>
 
               <div className="add-review">
-                <form action="#" className="add-review__form">
+                <Toast isErrorShow={showError} errorText={`Cannot post review`}/>
+                <form
+                  action="#"
+                  className="add-review__form"
+                  onSubmit={handleSubmit}
+                >
                   <div className="rating">
                     <div className="rating__stars" onChange={ratingChangeHandler}>
                       <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
@@ -133,12 +175,20 @@ const AddReview = (props) => {
                       className="add-review__textarea"
                       name="review-text"
                       id="review-text"
+                      minLength="50"
+                      maxLength="400"
+                      required={true}
                       placeholder="Review text"
                       onChange={(evt) => {
-                        setReviewForm({...reviewForm, text: evt.target.value});
+                        const text = evt.target.value;
+                        setReviewForm((prevReview) => ({...prevReview, comment: text}));
                       }}/>
                     <div className="add-review__submit">
-                      <button className="add-review__btn" type="submit">Post</button>
+                      <button
+                        className="add-review__btn"
+                        type="submit"
+                        disabled={!reviewForm.rating || !reviewForm.comment}
+                      >Post</button>
                     </div>
 
                   </div>
@@ -147,92 +197,22 @@ const AddReview = (props) => {
 
               <div className="movie-card__reviews movie-card__row">
                 <div className="movie-card__reviews-col">
-                  <div className="review">
-                    <blockquote className="review__quote">
-                      <p className="review__text">Discerning travellers and Wes Anderson fans will luxuriate in the
-                        glorious Mittel-European kitsch of one of the director&apos;s funniest and most exquisitely designed
-                        movies in years.</p>
+                  {comments.map((item) =>
+                    <div className="review" key={`comment-${item.id}`}>
+                      <blockquote className="review__quote">
+                        <p className="review__text">{item.comment}</p>
 
-                      <footer className="review__details">
-                        <cite className="review__author">Kate Muir</cite>
-                        <time className="review__date" dateTime="2016-12-24">December 24, 2016</time>
-                      </footer>
-                    </blockquote>
+                        <footer className="review__details">
+                          <cite className="review__author">{item.user.name}</cite>
+                          <time className="review__date" dateTime="{dayjs(new Date(item.date)).format(`YYYY-MM-DD`)}">{
+                            dayjs(new Date(item.date)).format(`MMMM DD, YYYY`)
+                          }</time>
+                        </footer>
+                      </blockquote>
 
-                    <div className="review__rating">8,9</div>
-                  </div>
-
-                  <div className="review">
-                    <blockquote className="review__quote">
-                      <p className="review__text">Anderson&apos;s films are too precious for some, but for those of us
-                        willing to lose ourselves in them, they&apos;re a delight. &quot;The Grand Budapest Hotel &quot; is no
-                        different, except that he has added a hint of gravitas to the mix, improving the recipe.</p>
-
-                      <footer className="review__details">
-                        <cite className="review__author">Bill Goodykoontz</cite>
-                        <time className="review__date" dateTime="2015-11-18">November 18, 2015</time>
-                      </footer>
-                    </blockquote>
-
-                    <div className="review__rating">8,0</div>
-                  </div>
-
-                  <div className="review">
-                    <blockquote className="review__quote">
-                      <p className="review__text">I didn&apos;t find it amusing, and while I can appreciate the creativity,
-                        it&apos;s an hour and 40 minutes I wish I could take back.</p>
-
-                      <footer className="review__details">
-                        <cite className="review__author">Amanda Greever</cite>
-                        <time className="review__date" dateTime="2015-11-18">November 18, 2015</time>
-                      </footer>
-                    </blockquote>
-
-                    <div className="review__rating">8,0</div>
-                  </div>
-                </div>
-                <div className="movie-card__reviews-col">
-                  <div className="review">
-                    <blockquote className="review__quote">
-                      <p className="review__text">The mannered, madcap proceedings are often delightful, occasionally
-                        silly, and here and there, gruesome and/or heartbreaking.</p>
-
-                      <footer className="review__details">
-                        <cite className="review__author">Matthew Lickona</cite>
-                        <time className="review__date" dateTime="2016-12-20">December 20, 2016</time>
-                      </footer>
-                    </blockquote>
-
-                    <div className="review__rating">7,2</div>
-                  </div>
-
-                  <div className="review">
-                    <blockquote className="review__quote">
-                      <p className="review__text">It is certainly a magical and childlike way of storytelling, even if
-                        the content is a little more adult.</p>
-
-                      <footer className="review__details">
-                        <cite className="review__author">Paula Fleri-Soler</cite>
-                        <time className="review__date" dateTime="2016-12-20">December 20, 2016</time>
-                      </footer>
-                    </blockquote>
-
-                    <div className="review__rating">7,6</div>
-                  </div>
-
-                  <div className="review">
-                    <blockquote className="review__quote">
-                      <p className="review__text">It is certainly a magical and childlike way of storytelling, even if
-                        the content is a little more adult.</p>
-
-                      <footer className="review__details">
-                        <cite className="review__author">Paula Fleri-Soler</cite>
-                        <time className="review__date" dateTime="2016-12-20">December 20, 2016</time>
-                      </footer>
-                    </blockquote>
-
-                    <div className="review__rating">7,0</div>
-                  </div>
+                      <div className="review__rating">{item.rating}</div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -304,7 +284,28 @@ const AddReview = (props) => {
 };
 
 AddReview.propTypes = {
-  films: filmsPropTypes
+  movie: moviePropTypes,
+  comments: commentsPropTypes,
+  isOneMovieLoaded: PropTypes.bool.isRequired,
+  onLoadData: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired
 };
 
-export default AddReview;
+const mapStateToProps = (state) => ({
+  movie: state.movie,
+  comments: state.comments,
+  isOneMovieLoaded: state.isOneMovieLoaded,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoadData(id) {
+    dispatch(fetchOneMovie(id));
+  },
+  onSubmit(reviewData, id, onAddReviewError) {
+    dispatch(addReview(reviewData, id, onAddReviewError));
+  }
+});
+
+export {AddReview};
+export default connect(mapStateToProps, mapDispatchToProps)(AddReview);
+

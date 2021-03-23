@@ -2,6 +2,8 @@ const ActionType = {
   CHANGE_GENRE: `films/changeGenre`,
   GET_MOVIE_LIST: `films/getMovieList`,
   LOAD_MOVIES: `films/loadMovies`,
+  LOAD_ONE_MOVIE: `movie/loadOneMovie`,
+  LOAD_COMMENTS: `movie/comments`,
   REDIRECT_TO_ROUTE: `action/redirectToRoute`,
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
 };
@@ -29,6 +31,16 @@ const ActionCreator = {
   loadMovies: (movies) => ({
     type: ActionType.LOAD_MOVIES,
     payload: movies
+  }),
+
+  loadOneMovie: (movie) => ({
+    type: ActionType.LOAD_ONE_MOVIE,
+    payload: movie
+  }),
+
+  loadComments: (comments) => ({
+    type: ActionType.LOAD_COMMENTS,
+    payload: comments
   }),
 
   requireAuthorization: (status) => ({

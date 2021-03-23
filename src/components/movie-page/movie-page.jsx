@@ -1,13 +1,34 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Link, useParams} from "react-router-dom";
+import moviePropTypes from "../movie-prop-types";
 import filmsPropTypes from "../films-prop-types";
+import commentsPropTypes from "../comments-prop-types";
+import PropTypes from "prop-types";
 import MoviePageTabs from "../movie-page-tabs";
 import SimilarMoviesList from "../similar-movies-list";
+import {fetchOneMovie} from "../../store/api-actions";
+import {connect} from "react-redux";
+import Spinner from "../spinner/spinner";
 
 const MoviePage = (props) => {
-  const {films} = props;
+  const {movie, movies, isOneMovieLoaded, onLoadData, comments, authorizationStatus} = props;
   const {id} = useParams();
-  const movie = films.find((film) => film.id === id);
+
+  useEffect(() => {
+    onLoadData(id);
+  }, [id]);
+
+  useEffect(() => {
+    if (!isOneMovieLoaded) {
+      onLoadData(id);
+    }
+  }, [isOneMovieLoaded]);
+
+  if (!isOneMovieLoaded) {
+    return (
+      <Spinner />
+    );
+  }
 
   return (
     <React.Fragment>
@@ -58,7 +79,7 @@ const MoviePage = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link to={`/films/${movie.id}/review`} className="btn movie-card__button">Add review</Link>
+                {authorizationStatus && <Link to={`/films/${movie.id}/review`} className="btn movie-card__button">Add review</Link>}
               </div>
             </div>
           </div>
@@ -74,7 +95,7 @@ const MoviePage = (props) => {
                 height="327"/>
             </div>
 
-            <MoviePageTabs movie={movie}/>
+            <MoviePageTabs movie={movie} comments={comments}/>
 
           </div>
         </div>
@@ -84,7 +105,7 @@ const MoviePage = (props) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <SimilarMoviesList films={films} movie={movie}/>
+          <SimilarMoviesList films={movies} movie={movie}/>
         </section>
 
         <footer className="page-footer">
@@ -106,7 +127,27 @@ const MoviePage = (props) => {
 };
 
 MoviePage.propTypes = {
-  films: filmsPropTypes
+  movie: moviePropTypes,
+  movies: filmsPropTypes,
+  isOneMovieLoaded: PropTypes.bool.isRequired,
+  onLoadData: PropTypes.bool.isRequired,
+  comments: commentsPropTypes,
+  authorizationStatus: PropTypes.bool.isRequired
 };
 
-export default MoviePage;
+const mapStateToProps = (state) => ({
+  movies: state.movies,
+  movie: state.movie,
+  comments: state.comments,
+  isOneMovieLoaded: state.isOneMovieLoaded,
+  authorizationStatus: state.authorizationStatus
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoadData(id) {
+    dispatch(fetchOneMovie(id));
+  },
+});
+
+export {MoviePage};
+export default connect(mapStateToProps, mapDispatchToProps)(MoviePage);
