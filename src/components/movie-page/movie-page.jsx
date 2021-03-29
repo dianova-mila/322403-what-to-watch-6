@@ -59,6 +59,8 @@ const MoviePage = ({onUserAvatarClick}) => {
     );
   }
 
+  const similarMovies = movies.filter((film) => film.genre === movie.genre).slice(0, 4);
+
   return (
     <React.Fragment>
       <section className="movie-card movie-card--full">
@@ -123,7 +125,7 @@ const MoviePage = ({onUserAvatarClick}) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <SimilarMoviesList films={movies} movie={movie}/>
+          <MovieList films={similarMovies} />
         </section>
 
         <footer className="page-footer">
