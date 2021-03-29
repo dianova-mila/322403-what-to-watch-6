@@ -16,8 +16,15 @@ const MyList = () => {
     dispatch(fetchFavorites());
   };
 
-const MyList = (props) => {
-  const {films} = props;
+  useEffect(() => {
+    onLoadData();
+  }, []);
+
+  if (!isFavoritesLoaded) {
+    return (
+      <Spinner />
+    );
+  }
 
   return (
     <div className="user-page">
@@ -33,15 +40,20 @@ const MyList = (props) => {
         <h1 className="page-title user-page__title">My list</h1>
 
         <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+          <div className="user-block__avatar" onClick={() => dispatch(logout()) /* для тестирования */}>
+            <img
+              src={userInfo.avatarUrl}
+              alt="User avatar"
+              width="63"
+              height="63"
+            />
           </div>
         </div>
       </header>
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <MoviesList films={films}/>
+        <MovieList films={favoritesMovies} />
       </section>
 
       <footer className="page-footer">

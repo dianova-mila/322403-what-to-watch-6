@@ -4,6 +4,7 @@ const ActionType = {
   CHANGE_GENRE: `films/changeGenre`,
   GET_MOVIE_LIST: `films/getMovieList`,
   LOAD_MOVIES: `films/loadMovies`,
+  LOAD_FAVORITES: `films/loadFavorites`,
   LOAD_ONE_MOVIE: `movie/loadOneMovie`,
   LOAD_COMMENTS: `movie/comments`,
   REDIRECT_TO_ROUTE: `action/redirectToRoute`,
@@ -35,10 +36,17 @@ const loadMovies = createAction(ActionType.LOAD_MOVIES, (movies) => {
   };
 });
 
-  loadOneMovie: (movie) => ({
-    type: ActionType.LOAD_ONE_MOVIE,
+const loadFavorites = createAction(ActionType.LOAD_FAVORITES, (favoritesMovies) => {
+  return {
+    payload: favoritesMovies
+  };
+});
+
+const loadOneMovie = createAction(ActionType.LOAD_ONE_MOVIE, (movie) => {
+  return {
     payload: movie
-  }),
+  };
+});
 
   loadComments: (comments) => ({
     type: ActionType.LOAD_COMMENTS,

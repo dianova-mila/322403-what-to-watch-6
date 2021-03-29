@@ -25,6 +25,10 @@ const fetchOneMovie = (id) => (dispatch, _getState, api) => (
   }).catch(() => dispatch(ActionCreator.redirectToRoute(`/404`)))
 );
 
+const fetchFavorites = () => (dispatch, _getState, api) => (
+  api.get(`/favorite`)
+    .then(({data}) => dispatch(loadFavorites(adaptMoviesToClient(data))))
+);
 
 const checkAuth = () => (dispatch, _getState, api) => (
   api.get(`/login`)
