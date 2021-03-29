@@ -33,10 +33,22 @@ const checkAuth = () => (dispatch, _getState, api) => (
     .catch(() => {})
 );
 
-const login = ({login: email, password}) => (dispatch, _getState, api) => (
+const login = ({login: email, password}, onError) => (dispatch, _getState, api) => (
   api.post(`/login`, {email, password})
-    .then(() => dispatch(ActionCreator.requireAuthorization(true)))
-    .then(() => dispatch(ActionCreator.redirectToRoute(`/`)))
+    .then(() => dispatch(requireAuthorization(true)))
+    .then(() => dispatch(redirectToRoute(`/`)))
+    .catch(() => onError())
+);
+
+const logout = () => (dispatch, _getState, api) => (
+  api.get(`/logout`)
+    .then(() => dispatch(redirectToRoute(`/`)))
+);
+
+const addToFavorites = (id, status, onSuccess) => (dispatch, _getState, api) => (
+  api.post(`/favorite/${id}/${status}`)
+    .then(() => onSuccess())
+    .catch(() => dispatch(redirectToRoute(`/login`)))
 );
 
 const addReview = ({rating, comment}, id, onError) => (dispatch, _getState, api) => (
