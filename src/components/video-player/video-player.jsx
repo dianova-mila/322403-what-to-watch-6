@@ -1,25 +1,16 @@
-import React, {useRef, useEffect} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-const VideoPlayer = (props) => {
-  const {isPlaying, src} = props;
-
-  const videoRef = useRef();
-
-  useEffect(() => {
-    if (isPlaying) {
-      videoRef.current.play();
-    }
-  }, [isPlaying]);
+const VideoPlayer = ({src}) => {
 
   return (
     <React.Fragment>
       <video
-        ref={videoRef}
         src={src}
         muted={true}
         width="280"
         height="175"
+        autoPlay={true}
       />
     </React.Fragment>
   );
