@@ -7,11 +7,6 @@ import {useDispatch, useSelector} from "react-redux";
 import Spinner from "../spinner/spinner";
 import Header from "../header/header";
 import PropTypes from "prop-types";
-import MoviePageTabs from "../movie-page-tabs";
-import SimilarMoviesList from "../similar-movies-list";
-import {fetchOneMovie} from "../../store/api-actions";
-import {connect} from "react-redux";
-import Spinner from "../spinner/spinner";
 
 const MoviePage = ({onUserAvatarClick}) => {
   const {movie, comments, isOneMovieLoaded} = useSelector((state) => state.MOVIE);
@@ -44,14 +39,10 @@ const MoviePage = ({onUserAvatarClick}) => {
   };
 
   useEffect(() => {
-    onLoadData(id);
-  }, [id]);
-
-  useEffect(() => {
-    if (!isOneMovieLoaded) {
+    if (movie.id !== id) {
       onLoadData(id);
     }
-  }, [isOneMovieLoaded]);
+  }, []);
 
   if (!isOneMovieLoaded) {
     return (
@@ -63,7 +54,12 @@ const MoviePage = ({onUserAvatarClick}) => {
 
   return (
     <React.Fragment>
-      <section className="movie-card movie-card--full">
+      <section
+        className="movie-card movie-card--full"
+        style={{
+          backgroundColor: movie.backgroundColor,
+        }}
+      >
         <div className="movie-card__hero">
           <div className="movie-card__bg">
             <img
