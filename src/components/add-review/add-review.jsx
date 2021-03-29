@@ -5,6 +5,9 @@ import Spinner from "../spinner/spinner";
 import {fetchOneMovie, addReview, fetchMovies} from "../../store/api-actions";
 import dayjs from "dayjs";
 import Toast from "../toast/toast";
+import Header from "../header/header";
+import MovieList from "../movie-list/movie-list";
+import PropTypes from "prop-types";
 
 const AddReview = ({onUserAvatarClick}) => {
   const {movie, comments, isOneMovieLoaded} = useSelector((state) => state.MOVIE);
@@ -75,21 +78,7 @@ const AddReview = ({onUserAvatarClick}) => {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header movie-card__head">
-            <div className="logo">
-              <Link to="/" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
-
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-              </div>
-            </div>
-          </header>
+          <Header onUserAvatarClick={onUserAvatarClick} />
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">

@@ -6,7 +6,8 @@ const ActionType = {
   LOAD_MOVIES: `films/loadMovies`,
   LOAD_FAVORITES: `films/loadFavorites`,
   LOAD_ONE_MOVIE: `movie/loadOneMovie`,
-  LOAD_COMMENTS: `movie/comments`,
+  LOAD_PROMO_MOVIE: `movie/loadPromoMovie`,
+  LOAD_COMMENTS: `movie/loadComments`,
   REDIRECT_TO_ROUTE: `action/redirectToRoute`,
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
   LOAD_USER_INFO: `user/loadUserInfo`,
@@ -48,10 +49,17 @@ const loadOneMovie = createAction(ActionType.LOAD_ONE_MOVIE, (movie) => {
   };
 });
 
-  loadComments: (comments) => ({
-    type: ActionType.LOAD_COMMENTS,
+const loadPromoMovie = createAction(ActionType.LOAD_PROMO_MOVIE, (promoMovie) => {
+  return {
+    payload: promoMovie
+  };
+});
+
+const loadComments = createAction(ActionType.LOAD_COMMENTS, (comments) => {
+  return {
     payload: comments
-  }),
+  };
+});
 
 const requireAuthorization = createAction(ActionType.REQUIRED_AUTHORIZATION, (status) => {
   return {

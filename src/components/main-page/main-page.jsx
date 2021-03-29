@@ -6,6 +6,8 @@ import GenreList from "../genre-list/genre-list";
 import ShowMore from "../show_more/show_more";
 import Spinner from "../spinner/spinner";
 import {fetchMovies} from "../../store/api-actions";
+import {changeGenre, getMovieList} from "../../store/actions";
+import MovieCard from "../movie-card/movie-card";
 
 const MOVIES_CARDS_IN_STEP = 8;
 
@@ -82,69 +84,7 @@ const MainPage = ({onUserAvatarClick}) => {
 
   return (
     <React.Fragment>
-      <section className="movie-card">
-        <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
-        </div>
-
-        <h1 className="visually-hidden">WTW</h1>
-
-        <header className="page-header movie-card__head">
-          <div className="logo">
-            <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="user-block">
-            {authorizationStatus
-              ? <div className="user-block__avatar">
-                <img
-                  src="img/avatar.jpg"
-                  alt="User avatar"
-                  width="63"
-                  height="63"
-                  onClick={() => onUserAvatarClick()}
-                />
-              </div>
-              : <Link to="/login" className="user-block__link">Sign in</Link>
-            }
-          </div>
-        </header>
-
-        <div className="movie-card__wrap">
-          <div className="movie-card__info">
-            <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327"/>
-            </div>
-
-            <div className="movie-card__desc">
-              <h2 className="movie-card__title">{mainMovie.title}</h2>
-              <p className="movie-card__meta">
-                <span className="movie-card__genre">{mainMovie.genre}</span>
-                <span className="movie-card__year">{mainMovie.year}</span>
-              </p>
-
-              <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s" />
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add" />
-                  </svg>
-                  <span>My list</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <MovieCard onUserAvatarClick={onUserAvatarClick} />
 
       <div className="page-content">
         <section className="catalog">
@@ -153,9 +93,10 @@ const MainPage = ({onUserAvatarClick}) => {
           <GenreList
             genres={collectGenres(movies)}
             onSelectGenre={onSelectGenre}
+            currentGenre={currentGenre}
           />
 
-          <MoviesList films={displayedMovies.movies} />
+          <MovieList films={displayedMovies.movies} />
 
           <ShowMore
             isActive={showMoreButtonActive}

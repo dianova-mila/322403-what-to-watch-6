@@ -20,9 +20,14 @@ const fetchOneMovie = (id) => (dispatch, _getState, api) => (
     api.get(`/films/${id}`),
     api.get(`/comments/${id}`)
   ]).then(([movie, comments]) => {
-    dispatch(ActionCreator.loadComments(comments.data));
-    dispatch(ActionCreator.loadOneMovie(adaptMovieToClient(movie.data)));
-  }).catch(() => dispatch(ActionCreator.redirectToRoute(`/404`)))
+    dispatch(loadComments(comments.data));
+    dispatch(loadOneMovie(adaptMovieToClient(movie.data)));
+  }).catch(() => dispatch(redirectToRoute(`/404`)))
+);
+
+const fetchPromoMovie = () => (dispatch, _getState, api) => (
+  api.get(`/films/promo`)
+    .then(({data}) => dispatch(loadPromoMovie(adaptMovieToClient(data))))
 );
 
 const fetchFavorites = () => (dispatch, _getState, api) => (

@@ -14,7 +14,7 @@ import PrivateRoute from '../private-route/private-route';
 
 
 const App = (props) => {
-  const {mainMovie, films} = props;
+  const {films} = props;
 
   return (
     <BrowserRouter history={browserHistory}>
@@ -23,7 +23,7 @@ const App = (props) => {
           path="/"
           render={({history}) => {
             return (
-              <MainPage mainMovie={mainMovie} onUserAvatarClick={() => history.push(`/mylist`)}/>
+              <MainPage onUserAvatarClick={() => history.push(`/mylist`)} />
             );
           }}
         >
