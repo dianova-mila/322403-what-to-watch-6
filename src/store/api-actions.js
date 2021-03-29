@@ -28,7 +28,8 @@ const fetchOneMovie = (id) => (dispatch, _getState, api) => (
 
 const checkAuth = () => (dispatch, _getState, api) => (
   api.get(`/login`)
-    .then(() => dispatch(ActionCreator.requireAuthorization(true)))
+    .then(({data}) => dispatch(loadUserInfo(adaptUserInfoToClient(data))))
+    .then(() => dispatch(requireAuthorization(true)))
     .catch(() => {})
 );
 

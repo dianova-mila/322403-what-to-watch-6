@@ -38,15 +38,22 @@ const App = (props) => {
         </PrivateRoute>
         <PrivateRoute exact
           path="/films/:id/review"
-          render={() => <AddReview />}
+          render={({history}) => {
+            return (
+              <AddReview onUserAvatarClick={() => history.push(`/mylist`)}/>
+            );
+          }}
         >
         </PrivateRoute>
         <Route
           exact
           path="/films/:id"
-          render={() =>
-            <MoviePage/>
-          }>
+          render={({history}) => {
+            return (
+              <MoviePage onUserAvatarClick={() => history.push(`/mylist`)} />
+            );
+          }}
+        >
         </Route>
         <Route
           exact

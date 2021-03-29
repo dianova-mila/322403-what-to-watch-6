@@ -8,6 +8,7 @@ const ActionType = {
   LOAD_COMMENTS: `movie/comments`,
   REDIRECT_TO_ROUTE: `action/redirectToRoute`,
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
+  LOAD_USER_INFO: `user/loadUserInfo`,
 };
 
 const changeGenre = createAction(ActionType.CHANGE_GENRE, (currentGenre) => {
