@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
-import moviePropTypes from "./movie-prop-types";
-import VideoPlayer from "./video-player";
+import moviePropTypes from "../../prop-types/movie-prop-types";
+import VideoPlayer from "../video-player/video-player";
 
 const ONE_SECOND = 1000;
 

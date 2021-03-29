@@ -1,6 +1,6 @@
 import React from "react";
 import {useParams} from "react-router-dom";
-import filmsPropTypes from "../films-prop-types";
+import filmsPropTypes from "../../prop-types/films-prop-types";
 
 const Player = (props) => {
   const {films} = props;

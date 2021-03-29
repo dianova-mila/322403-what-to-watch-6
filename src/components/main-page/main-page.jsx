@@ -2,12 +2,8 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import MovieList from "../movie-list/movie-list";
 import PropTypes from "prop-types";
-import filmsPropTypes from "../films-prop-types";
-import GenreList from "../genre-list";
-import ShowMore from "../show_more";
-import {ActionCreator} from "../../store/actions";
-import {connect} from "react-redux";
-import {Link} from "react-router-dom";
+import GenreList from "../genre-list/genre-list";
+import ShowMore from "../show_more/show_more";
 import Spinner from "../spinner/spinner";
 import {fetchMovies} from "../../store/api-actions";
 

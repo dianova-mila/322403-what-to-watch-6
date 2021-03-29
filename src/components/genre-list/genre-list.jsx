@@ -1,6 +1,5 @@
 import React from "react";
-import {connect} from "react-redux";
-import filmsPropTypes from "./films-prop-types";
+import filmsPropTypes from "../../prop-types/films-prop-types";
 import PropTypes from "prop-types";
 
 const GenreList = (props) => {
@@ -28,9 +27,4 @@ GenreList.propTypes = {
   onSelectGenre: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  currentGenre: state.currentGenre,
-});
-
-export {GenreList};
-export default connect(mapStateToProps)(GenreList);
+export default GenreList;
