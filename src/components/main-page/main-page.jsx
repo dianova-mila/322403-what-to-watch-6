@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
-import MoviesList from "../movies-list";
+import {useDispatch, useSelector} from "react-redux";
+import MovieList from "../movie-list/movie-list";
 import PropTypes from "prop-types";
 import filmsPropTypes from "../films-prop-types";
 import GenreList from "../genre-list";
@@ -26,25 +27,28 @@ const getMoviesToShow = (movies, maxDisplayedMovies) => {
   return movies.slice(0, maxDisplayedMovies);
 };
 
-const MainPage = (props) => {
-  const {
-    mainMovie,
-    movies,
-    onSelectGenre,
-    movieList,
-    onChangeGenre,
-    currentGenre,
-    isDataLoaded,
-    onLoadData,
-    authorizationStatus,
-    onUserAvatarClick
-  } = props;
+const MainPage = ({onUserAvatarClick}) => {
+  const {movies, movieList, currentGenre, isDataLoaded} = useSelector((state) => state.FILMS);
 
   const [displayedMovies, setDisplayedMovies] = useState({
     maxDisplayedMovies: MOVIES_CARDS_IN_STEP,
     movies: movieList,
   });
   const [showMoreButtonActive, setShowMoreButtonActive] = useState(true);
+
+  const dispatch = useDispatch();
+
+  const onSelectGenre = (genre) => {
+    dispatch(changeGenre(genre));
+  };
+
+  const onChangeGenre = (genre, films) => {
+    dispatch(getMovieList(genre, films));
+  };
+
+  const onLoadData = () => {
+    dispatch(fetchMovies());
+  };
 
   useEffect(() => {
     setDisplayedMovies((prevDisplayedMovies) => ({
@@ -191,41 +195,7 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  mainMovie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired
-  }),
-  movies: filmsPropTypes,
-  movieList: filmsPropTypes,
-  isDataLoaded: PropTypes.bool.isRequired,
-  onLoadData: PropTypes.func.isRequired,
-  currentGenre: PropTypes.string.isRequired,
-  onSelectGenre: PropTypes.func.isRequired,
-  onChangeGenre: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.bool.isRequired,
   onUserAvatarClick: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  movieList: state.movieList,
-  movies: state.movies,
-  currentGenre: state.currentGenre,
-  isDataLoaded: state.isDataLoaded,
-  authorizationStatus: state.authorizationStatus
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onSelectGenre(genre) {
-    dispatch(ActionCreator.changeGenre(genre));
-  },
-  onChangeGenre(genre, films) {
-    dispatch(ActionCreator.getMovieList(genre, films));
-  },
-  onLoadData() {
-    dispatch(fetchMovies());
-  },
-});
-
-export {MainPage};
-export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
+export default MainPage;

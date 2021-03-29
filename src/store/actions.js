@@ -1,3 +1,5 @@
+import {createAction} from "@reduxjs/toolkit";
+
 const ActionType = {
   CHANGE_GENRE: `films/changeGenre`,
   GET_MOVIE_LIST: `films/getMovieList`,
@@ -8,30 +10,29 @@ const ActionType = {
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
 };
 
-const ActionCreator = {
-  changeGenre: (currentGenre) => ({
-    type: ActionType.CHANGE_GENRE,
-    currentGenre
-  }),
+const changeGenre = createAction(ActionType.CHANGE_GENRE, (currentGenre) => {
+  return {
+    payload: currentGenre
+  };
+});
 
-  getMovieList: (currentGenre, movies) => {
-    if (currentGenre === `All genres`) {
-      return {
-        type: ActionType.GET_MOVIE_LIST,
-        movieList: movies
-      };
-    }
-
+const getMovieList = createAction(ActionType.GET_MOVIE_LIST, (currentGenre, movies) => {
+  if (currentGenre === `All genres`) {
     return {
-      type: ActionType.GET_MOVIE_LIST,
-      movieList: movies.filter((movie) => movie.genre === currentGenre)
+      payload: movies
     };
-  },
+  }
 
-  loadMovies: (movies) => ({
-    type: ActionType.LOAD_MOVIES,
+  return {
+    payload: movies.filter((movie) => movie.genre === currentGenre)
+  };
+});
+
+const loadMovies = createAction(ActionType.LOAD_MOVIES, (movies) => {
+  return {
     payload: movies
-  }),
+  };
+});
 
   loadOneMovie: (movie) => ({
     type: ActionType.LOAD_ONE_MOVIE,
@@ -43,15 +44,34 @@ const ActionCreator = {
     payload: comments
   }),
 
-  requireAuthorization: (status) => ({
-    type: ActionType.REQUIRED_AUTHORIZATION,
-    payload: status,
-  }),
+const requireAuthorization = createAction(ActionType.REQUIRED_AUTHORIZATION, (status) => {
+  return {
+    payload: status
+  };
+});
 
-  redirectToRoute: (url) => ({
-    type: ActionType.REDIRECT_TO_ROUTE,
-    payload: url,
-  })
+const loadUserInfo = createAction(ActionType.LOAD_USER_INFO, (userInfo) => {
+  return {
+    payload: userInfo
+  };
+});
+
+const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (url) => {
+  return {
+    payload: url
+  };
+});
+
+export {
+  ActionType,
+  changeGenre,
+  getMovieList,
+  loadMovies,
+  loadFavorites,
+  loadOneMovie,
+  loadPromoMovie,
+  loadComments,
+  requireAuthorization,
+  loadUserInfo,
+  redirectToRoute
 };
-
-export {ActionType, ActionCreator};

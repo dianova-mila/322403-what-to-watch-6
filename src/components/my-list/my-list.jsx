@@ -1,7 +1,20 @@
-import React from "react";
-import MoviesList from "../movies-list";
-import filmsPropTypes from "../films-prop-types";
+import React, {useEffect} from "react";
+import MovieList from "../movie-list/movie-list";
+import filmsPropTypes from "../../prop-types/films-prop-types";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import Spinner from "../spinner/spinner";
+import {fetchFavorites, logout} from "../../store/api-actions";
+
+const MyList = () => {
+  const {favoritesMovies, isFavoritesLoaded} = useSelector((state) => state.FILMS);
+  const {userInfo} = useSelector((state) => state.USER);
+
+  const dispatch = useDispatch();
+
+  const onLoadData = () => {
+    dispatch(fetchFavorites());
+  };
 
 const MyList = (props) => {
   const {films} = props;

@@ -1,17 +1,31 @@
 import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
-import PropTypes from "prop-types";
+import {useSelector, useDispatch} from 'react-redux';
 import Spinner from "../spinner/spinner";
-import {fetchOneMovie, addReview} from "../../store/api-actions";
-import {connect} from "react-redux";
-import moviePropTypes from "../movie-prop-types";
-import commentsPropTypes from "../comments-prop-types";
+import {fetchOneMovie, addReview, fetchMovies} from "../../store/api-actions";
 import dayjs from "dayjs";
 import Toast from "../toast/toast";
 
-const AddReview = (props) => {
-  const {movie, comments, isOneMovieLoaded, onLoadData, onSubmit} = props;
+const AddReview = ({onUserAvatarClick}) => {
+  const {movie, comments, isOneMovieLoaded} = useSelector((state) => state.MOVIE);
+  const {movies} = useSelector((state) => state.FILMS);
+
   const {id} = useParams();
+
+  const dispatch = useDispatch();
+
+  const onLoadData = (movieId) => {
+    dispatch(fetchOneMovie(movieId));
+
+    if (movies.length === 0) {
+      dispatch(fetchMovies(movieId));
+    }
+  };
+
+  const onSubmit = (reviewData, movieId, onAddReviewError) => {
+    dispatch(addReview(reviewData, movieId, onAddReviewError));
+  };
+
   const [reviewForm, setReviewForm] = useState({rating: ``, comment: ``});
   const [showError, setShowError] = useState(false);
 
@@ -284,28 +298,8 @@ const AddReview = (props) => {
 };
 
 AddReview.propTypes = {
-  movie: moviePropTypes,
-  comments: commentsPropTypes,
-  isOneMovieLoaded: PropTypes.bool.isRequired,
-  onLoadData: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired
+  onUserAvatarClick: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  movie: state.movie,
-  comments: state.comments,
-  isOneMovieLoaded: state.isOneMovieLoaded,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onLoadData(id) {
-    dispatch(fetchOneMovie(id));
-  },
-  onSubmit(reviewData, id, onAddReviewError) {
-    dispatch(addReview(reviewData, id, onAddReviewError));
-  }
-});
-
-export {AddReview};
-export default connect(mapStateToProps, mapDispatchToProps)(AddReview);
+export default AddReview;
 

@@ -1,8 +1,11 @@
 import React, {useEffect} from "react";
 import {Link, useParams} from "react-router-dom";
-import moviePropTypes from "../movie-prop-types";
-import filmsPropTypes from "../films-prop-types";
-import commentsPropTypes from "../comments-prop-types";
+import MoviePageTabs from "../movie-page-tabs/movie-page-tabs";
+import MovieList from "../movie-list/movie-list";
+import {fetchOneMovie, fetchMovies, addToFavorites} from "../../store/api-actions";
+import {useDispatch, useSelector} from "react-redux";
+import Spinner from "../spinner/spinner";
+import Header from "../header/header";
 import PropTypes from "prop-types";
 import MoviePageTabs from "../movie-page-tabs";
 import SimilarMoviesList from "../similar-movies-list";
@@ -10,9 +13,35 @@ import {fetchOneMovie} from "../../store/api-actions";
 import {connect} from "react-redux";
 import Spinner from "../spinner/spinner";
 
-const MoviePage = (props) => {
-  const {movie, movies, isOneMovieLoaded, onLoadData, comments, authorizationStatus} = props;
+const MoviePage = ({onUserAvatarClick}) => {
+  const {movie, comments, isOneMovieLoaded} = useSelector((state) => state.MOVIE);
+  const {movies} = useSelector((state) => state.FILMS);
+  const {authorizationStatus} = useSelector((state) => state.USER);
+
   const {id} = useParams();
+
+  const dispatch = useDispatch();
+
+  const onLoadData = (movieId) => {
+    dispatch(fetchOneMovie(movieId));
+
+    if (movies.length === 0) {
+      dispatch(fetchMovies(movieId));
+    }
+  };
+
+  const onMyListButtonClick = () => {
+    if (movie.isFavorite) {
+      dispatch(addToFavorites(id, 0, () => onAddToFavorites(id)));
+      return;
+    }
+
+    dispatch(addToFavorites(id, 1, () => onAddToFavorites(id)));
+  };
+
+  const onAddToFavorites = (movieId) => {
+    dispatch(fetchOneMovie(movieId));
+  };
 
   useEffect(() => {
     onLoadData(id);
@@ -127,27 +156,7 @@ const MoviePage = (props) => {
 };
 
 MoviePage.propTypes = {
-  movie: moviePropTypes,
-  movies: filmsPropTypes,
-  isOneMovieLoaded: PropTypes.bool.isRequired,
-  onLoadData: PropTypes.bool.isRequired,
-  comments: commentsPropTypes,
-  authorizationStatus: PropTypes.bool.isRequired
+  onUserAvatarClick: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  movies: state.movies,
-  movie: state.movie,
-  comments: state.comments,
-  isOneMovieLoaded: state.isOneMovieLoaded,
-  authorizationStatus: state.authorizationStatus
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onLoadData(id) {
-    dispatch(fetchOneMovie(id));
-  },
-});
-
-export {MoviePage};
-export default connect(mapStateToProps, mapDispatchToProps)(MoviePage);
+export default MoviePage;
