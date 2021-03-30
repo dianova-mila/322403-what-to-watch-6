@@ -1,7 +1,7 @@
 import React, {Fragment, useState} from "react";
 import dayjs from "dayjs";
-import moviePropTypes from "./movie-prop-types";
-import commentsPropTypes from "./comments-prop-types";
+import moviePropTypes from "../../prop-types/movie-prop-types";
+import commentsPropTypes from "../../prop-types/comments-prop-types";
 
 
 const Rating = {

@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import SmallMovieCard from "./small-movie-card";
-import filmsPropTypes from "./films-prop-types";
+import SmallMovieCard from "../small-movie-card/small-movie-card";
+import filmsPropTypes from "../../prop-types/films-prop-types";
 
-const MoviesList = (props) => {
+const MovieList = (props) => {
   const {films} = props;
   const [, setCurrentMovieId] = useState(0);
 
@@ -20,8 +20,8 @@ const MoviesList = (props) => {
   );
 };
 
-MoviesList.propTypes = {
+MovieList.propTypes = {
   films: filmsPropTypes
 };
 
-export default MoviesList;
+export default MovieList;

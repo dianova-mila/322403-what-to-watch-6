@@ -1,57 +1,94 @@
+import {createAction} from "@reduxjs/toolkit";
+
 const ActionType = {
   CHANGE_GENRE: `films/changeGenre`,
   GET_MOVIE_LIST: `films/getMovieList`,
   LOAD_MOVIES: `films/loadMovies`,
+  LOAD_FAVORITES: `films/loadFavorites`,
   LOAD_ONE_MOVIE: `movie/loadOneMovie`,
-  LOAD_COMMENTS: `movie/comments`,
+  LOAD_PROMO_MOVIE: `movie/loadPromoMovie`,
+  LOAD_COMMENTS: `movie/loadComments`,
   REDIRECT_TO_ROUTE: `action/redirectToRoute`,
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
+  LOAD_USER_INFO: `user/loadUserInfo`,
 };
 
-const ActionCreator = {
-  changeGenre: (currentGenre) => ({
-    type: ActionType.CHANGE_GENRE,
-    currentGenre
-  }),
+const changeGenre = createAction(ActionType.CHANGE_GENRE, (currentGenre) => {
+  return {
+    payload: currentGenre
+  };
+});
 
-  getMovieList: (currentGenre, movies) => {
-    if (currentGenre === `All genres`) {
-      return {
-        type: ActionType.GET_MOVIE_LIST,
-        movieList: movies
-      };
-    }
-
+const getMovieList = createAction(ActionType.GET_MOVIE_LIST, (currentGenre, movies) => {
+  if (currentGenre === `All genres`) {
     return {
-      type: ActionType.GET_MOVIE_LIST,
-      movieList: movies.filter((movie) => movie.genre === currentGenre)
+      payload: movies
     };
-  },
+  }
 
-  loadMovies: (movies) => ({
-    type: ActionType.LOAD_MOVIES,
+  return {
+    payload: movies.filter((movie) => movie.genre === currentGenre)
+  };
+});
+
+const loadMovies = createAction(ActionType.LOAD_MOVIES, (movies) => {
+  return {
     payload: movies
-  }),
+  };
+});
 
-  loadOneMovie: (movie) => ({
-    type: ActionType.LOAD_ONE_MOVIE,
+const loadFavorites = createAction(ActionType.LOAD_FAVORITES, (favoritesMovies) => {
+  return {
+    payload: favoritesMovies
+  };
+});
+
+const loadOneMovie = createAction(ActionType.LOAD_ONE_MOVIE, (movie) => {
+  return {
     payload: movie
-  }),
+  };
+});
 
-  loadComments: (comments) => ({
-    type: ActionType.LOAD_COMMENTS,
+const loadPromoMovie = createAction(ActionType.LOAD_PROMO_MOVIE, (promoMovie) => {
+  return {
+    payload: promoMovie
+  };
+});
+
+const loadComments = createAction(ActionType.LOAD_COMMENTS, (comments) => {
+  return {
     payload: comments
-  }),
+  };
+});
 
-  requireAuthorization: (status) => ({
-    type: ActionType.REQUIRED_AUTHORIZATION,
-    payload: status,
-  }),
+const requireAuthorization = createAction(ActionType.REQUIRED_AUTHORIZATION, (status) => {
+  return {
+    payload: status
+  };
+});
 
-  redirectToRoute: (url) => ({
-    type: ActionType.REDIRECT_TO_ROUTE,
-    payload: url,
-  })
+const loadUserInfo = createAction(ActionType.LOAD_USER_INFO, (userInfo) => {
+  return {
+    payload: userInfo
+  };
+});
+
+const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (url) => {
+  return {
+    payload: url
+  };
+});
+
+export {
+  ActionType,
+  changeGenre,
+  getMovieList,
+  loadMovies,
+  loadFavorites,
+  loadOneMovie,
+  loadPromoMovie,
+  loadComments,
+  requireAuthorization,
+  loadUserInfo,
+  redirectToRoute
 };
-
-export {ActionType, ActionCreator};

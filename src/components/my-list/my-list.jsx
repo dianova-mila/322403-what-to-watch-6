@@ -1,10 +1,30 @@
-import React from "react";
-import MoviesList from "../movies-list";
-import filmsPropTypes from "../films-prop-types";
+import React, {useEffect} from "react";
+import MovieList from "../movie-list/movie-list";
+import filmsPropTypes from "../../prop-types/films-prop-types";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import Spinner from "../spinner/spinner";
+import {fetchFavorites, logout} from "../../store/api-actions";
 
-const MyList = (props) => {
-  const {films} = props;
+const MyList = () => {
+  const {favoritesMovies, isFavoritesLoaded} = useSelector((state) => state.FILMS);
+  const {userInfo} = useSelector((state) => state.USER);
+
+  const dispatch = useDispatch();
+
+  const onLoadData = () => {
+    dispatch(fetchFavorites());
+  };
+
+  useEffect(() => {
+    onLoadData();
+  }, []);
+
+  if (!isFavoritesLoaded) {
+    return (
+      <Spinner />
+    );
+  }
 
   return (
     <div className="user-page">
@@ -20,15 +40,20 @@ const MyList = (props) => {
         <h1 className="page-title user-page__title">My list</h1>
 
         <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+          <div className="user-block__avatar" onClick={() => dispatch(logout()) /* для тестирования */}>
+            <img
+              src={userInfo.avatarUrl}
+              alt="User avatar"
+              width="63"
+              height="63"
+            />
           </div>
         </div>
       </header>
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <MoviesList films={films}/>
+        <MovieList films={favoritesMovies} />
       </section>
 
       <footer className="page-footer">

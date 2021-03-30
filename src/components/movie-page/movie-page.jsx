@@ -1,28 +1,48 @@
 import React, {useEffect} from "react";
 import {Link, useParams} from "react-router-dom";
-import moviePropTypes from "../movie-prop-types";
-import filmsPropTypes from "../films-prop-types";
-import commentsPropTypes from "../comments-prop-types";
-import PropTypes from "prop-types";
-import MoviePageTabs from "../movie-page-tabs";
-import SimilarMoviesList from "../similar-movies-list";
-import {fetchOneMovie} from "../../store/api-actions";
-import {connect} from "react-redux";
+import MoviePageTabs from "../movie-page-tabs/movie-page-tabs";
+import MovieList from "../movie-list/movie-list";
+import {fetchOneMovie, fetchMovies, addToFavorites} from "../../store/api-actions";
+import {useDispatch, useSelector} from "react-redux";
 import Spinner from "../spinner/spinner";
+import Header from "../header/header";
+import PropTypes from "prop-types";
 
-const MoviePage = (props) => {
-  const {movie, movies, isOneMovieLoaded, onLoadData, comments, authorizationStatus} = props;
+const MoviePage = ({onUserAvatarClick}) => {
+  const {movie, comments, isOneMovieLoaded} = useSelector((state) => state.MOVIE);
+  const {movies} = useSelector((state) => state.FILMS);
+  const {authorizationStatus} = useSelector((state) => state.USER);
+
   const {id} = useParams();
 
-  useEffect(() => {
-    onLoadData(id);
-  }, [id]);
+  const dispatch = useDispatch();
+
+  const onLoadData = (movieId) => {
+    dispatch(fetchOneMovie(movieId));
+
+    if (movies.length === 0) {
+      dispatch(fetchMovies(movieId));
+    }
+  };
+
+  const onMyListButtonClick = () => {
+    if (movie.isFavorite) {
+      dispatch(addToFavorites(id, 0, () => onAddToFavorites(id)));
+      return;
+    }
+
+    dispatch(addToFavorites(id, 1, () => onAddToFavorites(id)));
+  };
+
+  const onAddToFavorites = (movieId) => {
+    dispatch(fetchOneMovie(movieId));
+  };
 
   useEffect(() => {
-    if (!isOneMovieLoaded) {
+    if (movie.id !== id) {
       onLoadData(id);
     }
-  }, [isOneMovieLoaded]);
+  }, []);
 
   if (!isOneMovieLoaded) {
     return (
@@ -30,9 +50,16 @@ const MoviePage = (props) => {
     );
   }
 
+  const similarMovies = movies.filter((film) => film.genre === movie.genre).slice(0, 4);
+
   return (
     <React.Fragment>
-      <section className="movie-card movie-card--full">
+      <section
+        className="movie-card movie-card--full"
+        style={{
+          backgroundColor: movie.backgroundColor,
+        }}
+      >
         <div className="movie-card__hero">
           <div className="movie-card__bg">
             <img
@@ -42,21 +69,7 @@ const MoviePage = (props) => {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header movie-card__head">
-            <div className="logo">
-              <Link to="/" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
-
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-              </div>
-            </div>
-          </header>
+          <Header onUserAvatarClick={onUserAvatarClick} />
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
@@ -73,9 +86,12 @@ const MoviePage = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
+                <button
+                  className="btn btn--list movie-card__button"
+                  type="button"
+                  onClick={() => onMyListButtonClick()}>
                   <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add" />
+                    <use xlinkHref={movie.isFavorite ? `#in-list` : `#add`} />
                   </svg>
                   <span>My list</span>
                 </button>
@@ -105,7 +121,7 @@ const MoviePage = (props) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <SimilarMoviesList films={movies} movie={movie}/>
+          <MovieList films={similarMovies} />
         </section>
 
         <footer className="page-footer">
@@ -127,27 +143,7 @@ const MoviePage = (props) => {
 };
 
 MoviePage.propTypes = {
-  movie: moviePropTypes,
-  movies: filmsPropTypes,
-  isOneMovieLoaded: PropTypes.bool.isRequired,
-  onLoadData: PropTypes.bool.isRequired,
-  comments: commentsPropTypes,
-  authorizationStatus: PropTypes.bool.isRequired
+  onUserAvatarClick: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  movies: state.movies,
-  movie: state.movie,
-  comments: state.comments,
-  isOneMovieLoaded: state.isOneMovieLoaded,
-  authorizationStatus: state.authorizationStatus
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onLoadData(id) {
-    dispatch(fetchOneMovie(id));
-  },
-});
-
-export {MoviePage};
-export default connect(mapStateToProps, mapDispatchToProps)(MoviePage);
+export default MoviePage;

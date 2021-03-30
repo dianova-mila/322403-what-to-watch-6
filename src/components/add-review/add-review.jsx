@@ -1,17 +1,34 @@
 import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
-import PropTypes from "prop-types";
+import {useSelector, useDispatch} from 'react-redux';
 import Spinner from "../spinner/spinner";
-import {fetchOneMovie, addReview} from "../../store/api-actions";
-import {connect} from "react-redux";
-import moviePropTypes from "../movie-prop-types";
-import commentsPropTypes from "../comments-prop-types";
+import {fetchOneMovie, addReview, fetchMovies} from "../../store/api-actions";
 import dayjs from "dayjs";
 import Toast from "../toast/toast";
+import Header from "../header/header";
+import MovieList from "../movie-list/movie-list";
+import PropTypes from "prop-types";
 
-const AddReview = (props) => {
-  const {movie, comments, isOneMovieLoaded, onLoadData, onSubmit} = props;
+const AddReview = ({onUserAvatarClick}) => {
+  const {movie, comments, isOneMovieLoaded} = useSelector((state) => state.MOVIE);
+  const {movies} = useSelector((state) => state.FILMS);
+
   const {id} = useParams();
+
+  const dispatch = useDispatch();
+
+  const onLoadData = (movieId) => {
+    dispatch(fetchOneMovie(movieId));
+
+    if (movies.length === 0) {
+      dispatch(fetchMovies(movieId));
+    }
+  };
+
+  const onSubmit = (reviewData, movieId, onAddReviewError) => {
+    dispatch(addReview(reviewData, movieId, onAddReviewError));
+  };
+
   const [reviewForm, setReviewForm] = useState({rating: ``, comment: ``});
   const [showError, setShowError] = useState(false);
 
@@ -49,9 +66,16 @@ const AddReview = (props) => {
     );
   }
 
+  const similarMovies = movies.filter((film) => film.genre === movie.genre).slice(0, 4);
+
   return (
     <React.Fragment>
-      <section className="movie-card movie-card--full">
+      <section
+        className="movie-card movie-card--full"
+        style={{
+          backgroundColor: movie.backgroundColor,
+        }}
+      >
         <div className="movie-card__hero">
           <div className="movie-card__bg">
             <img
@@ -61,21 +85,7 @@ const AddReview = (props) => {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header movie-card__head">
-            <div className="logo">
-              <Link to="/" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
-
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-              </div>
-            </div>
-          </header>
+          <Header onUserAvatarClick={onUserAvatarClick} />
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
@@ -224,45 +234,7 @@ const AddReview = (props) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <div className="catalog__movies-list">
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-                  alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"/>
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Fantastic Beasts: The Crimes of
-                  Grindelwald</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175"/>
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Bohemian Rhapsody</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175"/>
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Macbeth</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/aviator.jpg" alt="Aviator" width="280" height="175"/>
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Aviator</a>
-              </h3>
-            </article>
-          </div>
+          <MovieList films={similarMovies} />
         </section>
 
         <footer className="page-footer">
@@ -284,28 +256,8 @@ const AddReview = (props) => {
 };
 
 AddReview.propTypes = {
-  movie: moviePropTypes,
-  comments: commentsPropTypes,
-  isOneMovieLoaded: PropTypes.bool.isRequired,
-  onLoadData: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired
+  onUserAvatarClick: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  movie: state.movie,
-  comments: state.comments,
-  isOneMovieLoaded: state.isOneMovieLoaded,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onLoadData(id) {
-    dispatch(fetchOneMovie(id));
-  },
-  onSubmit(reviewData, id, onAddReviewError) {
-    dispatch(addReview(reviewData, id, onAddReviewError));
-  }
-});
-
-export {AddReview};
-export default connect(mapStateToProps, mapDispatchToProps)(AddReview);
+export default AddReview;
 

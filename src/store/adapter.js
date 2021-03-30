@@ -31,4 +31,16 @@ const adaptMovieToClient = (movie) => {
 
 const adaptMoviesToClient = (movies) => movies.map((movie) => adaptMovieToClient(movie));
 
-export {adaptMovieToClient, adaptMoviesToClient};
+const adaptUserInfoToClient = (userInfo) => {
+  const adaptedUserInfo = Object.assign(
+      {},
+      userInfo,
+      {avatarUrl: userInfo.avatar_url}
+  );
+
+  delete adaptedUserInfo.avatar_url;
+
+  return adaptedUserInfo;
+};
+
+export {adaptMovieToClient, adaptMoviesToClient, adaptUserInfoToClient};
