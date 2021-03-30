@@ -25,7 +25,7 @@ const getMoviesToShow = (movies, maxDisplayedMovies) => {
   return movies.slice(0, maxDisplayedMovies);
 };
 
-const MainPage = ({onUserAvatarClick}) => {
+const MainPage = ({onUserAvatarClick, onPlayButtonClick}) => {
   const {movies, movieList, currentGenre, isDataLoaded} = useSelector((state) => state.FILMS);
 
   const [displayedMovies, setDisplayedMovies] = useState({
@@ -84,7 +84,7 @@ const MainPage = ({onUserAvatarClick}) => {
 
   return (
     <React.Fragment>
-      <MovieCard onUserAvatarClick={onUserAvatarClick} />
+      <MovieCard onUserAvatarClick={onUserAvatarClick} onPlayButtonClick={onPlayButtonClick} />
 
       <div className="page-content">
         <section className="catalog">
@@ -132,7 +132,8 @@ const MainPage = ({onUserAvatarClick}) => {
 };
 
 MainPage.propTypes = {
-  onUserAvatarClick: PropTypes.func.isRequired
+  onUserAvatarClick: PropTypes.func.isRequired,
+  onPlayButtonClick: PropTypes.func.isRequired
 };
 
 export default MainPage;

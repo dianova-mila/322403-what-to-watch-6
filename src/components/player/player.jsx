@@ -1,37 +1,107 @@
-import React from "react";
+import React, {useEffect, useRef, useState} from "react";
+import dayjs from "dayjs";
+import PropTypes from "prop-types";
 import {useParams} from "react-router-dom";
-import filmsPropTypes from "../../prop-types/films-prop-types";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchOneMovie} from "../../store/api-actions";
+import Spinner from "../spinner/spinner";
 
-const Player = (props) => {
-  const {films} = props;
+const Player = ({onExitClick}) => {
+  const {movie, isOneMovieLoaded} = useSelector((state) => state.MOVIE);
+  const [isVideoPlayed, setIsVideoPlayed] = useState(true);
+  const [timeElapsed, setTimeElapsed] = useState(0);
+  const [progress, setProgress] = useState(0);
+
   const {id} = useParams();
-  const movie = films.find((film) => film.id === id);
+
+  const videoRef = useRef();
+
+  const duration = require(`dayjs/plugin/duration`);
+  dayjs.extend(duration);
+
+  const dispatch = useDispatch();
+
+  const onLoadData = (movieId) => {
+    dispatch(fetchOneMovie(movieId));
+  };
+
+  useEffect(() => {
+    if (movie.id !== id) {
+      onLoadData(id);
+    }
+  }, []);
+
+  if (!isOneMovieLoaded) {
+    return (
+      <Spinner />
+    );
+  }
+
+  const onPlayButtonClick = () => {
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+      setIsVideoPlayed(true);
+      return;
+    }
+    videoRef.current.pause();
+    setIsVideoPlayed(false);
+  };
+
 
   return (
     <div className="player">
-      <video src={movie.videoLink} className="player__video" poster={movie.backgroundImage} />
+      <video
+        ref={videoRef}
+        src={movie.videoLink}
+        className="player__video"
+        poster={movie.backgroundImage}
+        autoPlay={true}
+        onTimeUpdate={() => {
+          setTimeElapsed(
+              ((videoRef.current.duration - videoRef.current.currentTime) * 1000),
+          );
+          setProgress(
+              (Math.floor(videoRef.current.currentTime) / (Math.floor(videoRef.current.duration) / 100))
+          );
+        }}
+        onClick={() => onPlayButtonClick()}
+      />
 
-      <button type="button" className="player__exit">Exit</button>
+      <button
+        type="button"
+        className="player__exit"
+        onClick={() => onExitClick()}
+      >Exit</button>
 
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
-            <progress className="player__progress" value="30" max="100" />
-            <div className="player__toggler" style={{left: `30%`}}>Toggler</div>
+            <progress className="player__progress" value={progress} max="100" />
+            <div className="player__toggler" style={{left: `${progress}%`}}>Toggler</div>
           </div>
-          <div className="player__time-value">1:30:29</div>
+          <div className="player__time-value">{dayjs.duration(timeElapsed).format(`H:mm:ss`)}</div>
         </div>
 
         <div className="player__controls-row">
-          <button type="button" className="player__play">
+          <button
+            type="button"
+            className="player__play"
+            onClick={() => onPlayButtonClick()}
+          >
             <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref="#play-s" />
+              <use xlinkHref={isVideoPlayed ? `#pause` : `#play-s`} />
             </svg>
             <span>Play</span>
           </button>
-          <div className="player__name">Transpotting</div>
+          <div className="player__name">{movie.name}</div>
 
-          <button type="button" className="player__full-screen">
+          <button
+            type="button"
+            className="player__full-screen"
+            onClick={() => {
+              videoRef.current.requestFullscreen();
+            }}
+          >
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen" />
             </svg>
@@ -44,7 +114,7 @@ const Player = (props) => {
 };
 
 Player.propTypes = {
-  films: filmsPropTypes
+  onExitClick: PropTypes.func.isRequired
 };
 
 export default Player;

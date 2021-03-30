@@ -23,7 +23,10 @@ const App = (props) => {
           path="/"
           render={({history}) => {
             return (
-              <MainPage onUserAvatarClick={() => history.push(`/mylist`)} />
+              <MainPage
+                onUserAvatarClick={() => history.push(`/mylist`)}
+                onPlayButtonClick={(id) => history.push(`/player/${id}`)}
+              />
             );
           }}
         >
@@ -40,7 +43,10 @@ const App = (props) => {
           path="/films/:id/review"
           render={({history}) => {
             return (
-              <AddReview onUserAvatarClick={() => history.push(`/mylist`)}/>
+              <AddReview
+                onUserAvatarClick={() => history.push(`/mylist`)}
+                onPlayButtonClick={(id) => history.push(`/player/${id}`)}
+              />
             );
           }}
         >
@@ -50,7 +56,10 @@ const App = (props) => {
           path="/films/:id"
           render={({history}) => {
             return (
-              <MoviePage onUserAvatarClick={() => history.push(`/mylist`)} />
+              <MoviePage
+                onUserAvatarClick={() => history.push(`/mylist`)}
+                onPlayButtonClick={(id) => history.push(`/player/${id}`)}
+              />
             );
           }}
         >
@@ -58,9 +67,11 @@ const App = (props) => {
         <Route
           exact
           path="/player/:id"
-          render={() =>
-            <Player films={films} />
-          }>
+          render={({history}) => {
+            return (
+              <Player onExitClick={() => history.push(`/`)}/>
+            );
+          }}>
         </Route>
         <Route path="/404">
           <NotFound />
