@@ -5,7 +5,7 @@ import {addToFavorites, fetchPromoMovie} from "../../store/api-actions";
 import Spinner from "../spinner/spinner";
 import PropTypes from "prop-types";
 
-const MovieCard = ({onUserAvatarClick}) => {
+const MovieCard = ({onUserAvatarClick, onPlayButtonClick}) => {
   const {promoMovie, isPromoMovieLoaded} = useSelector((state) => state.MOVIE);
 
   const dispatch = useDispatch();
@@ -69,7 +69,11 @@ const MovieCard = ({onUserAvatarClick}) => {
             </p>
 
             <div className="movie-card__buttons">
-              <button className="btn btn--play movie-card__button" type="button">
+              <button
+                className="btn btn--play movie-card__button"
+                type="button"
+                onClick={() => onPlayButtonClick(promoMovie.id)}
+              >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s" />
                 </svg>
@@ -93,7 +97,8 @@ const MovieCard = ({onUserAvatarClick}) => {
 };
 
 MovieCard.propTypes = {
-  onUserAvatarClick: PropTypes.func.isRequired
+  onUserAvatarClick: PropTypes.func.isRequired,
+  onPlayButtonClick: PropTypes.func.isRequired
 };
 
 export default MovieCard;

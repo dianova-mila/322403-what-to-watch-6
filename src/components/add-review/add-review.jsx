@@ -9,7 +9,7 @@ import Header from "../header/header";
 import MovieList from "../movie-list/movie-list";
 import PropTypes from "prop-types";
 
-const AddReview = ({onUserAvatarClick}) => {
+const AddReview = ({onUserAvatarClick, onPlayButtonClick}) => {
   const {movie, comments, isOneMovieLoaded} = useSelector((state) => state.MOVIE);
   const {movies} = useSelector((state) => state.FILMS);
 
@@ -96,7 +96,11 @@ const AddReview = ({onUserAvatarClick}) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button
+                  className="btn btn--play movie-card__button"
+                  type="button"
+                  onClick={() => onPlayButtonClick(movie.id)}
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s" />
                   </svg>
@@ -256,7 +260,8 @@ const AddReview = ({onUserAvatarClick}) => {
 };
 
 AddReview.propTypes = {
-  onUserAvatarClick: PropTypes.func.isRequired
+  onUserAvatarClick: PropTypes.func.isRequired,
+  onPlayButtonClick: PropTypes.func.isRequired
 };
 
 export default AddReview;
