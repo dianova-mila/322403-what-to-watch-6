@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoviePageTabs should render correctly 1`] = `
+<div>
+  <div
+    class="movie-card__desc"
+  >
+    <nav
+      class="movie-nav movie-card__nav"
+    >
+      <ul
+        class="movie-nav__list"
+      >
+        <li
+          class="movie-nav__item movie-nav__item--active"
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Overview
+          </a>
+        </li>
+        <li
+          class="movie-nav__item false"
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Details
+          </a>
+        </li>
+        <li
+          class="movie-nav__item false"
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Reviews
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div
+      class="movie-rating"
+    >
+      <div
+        class="movie-rating__score"
+      >
+        3.3
+      </div>
+      <p
+        class="movie-rating__meta"
+      >
+        <span
+          class="movie-rating__level"
+        >
+          Normal
+        </span>
+        <span
+          class="movie-rating__count"
+        >
+          48798
+           ratings
+        </span>
+      </p>
+    </div>
+    <div
+      class="movie-card__text"
+    >
+      <p>
+        Macbeth, the Thane of Glamis, receives a prophecy from a trio of witches that one day he will become King of Scotland. Consumed by ambition and spurred to action by his wife, Macbeth murders his king and takes the throne for himself.
+      </p>
+      <p
+        class="movie-card__director"
+      >
+        <strong>
+          Director: 
+          Justin Kurzel
+        </strong>
+      </p>
+      <p
+        class="movie-card__starring"
+      >
+        <strong>
+          Starring: 
+          Michael Fassbender, Marion Cotillard, Jack Madigan
+           and other
+        </strong>
+      </p>
+    </div>
+  </div>
+</div>
+`;

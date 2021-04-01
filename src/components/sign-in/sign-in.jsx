@@ -84,6 +84,7 @@ const SignIn = () => {
                 placeholder="Email address"
                 name="user-email"
                 id="user-email"
+                data-testid="login"
                 onBlur={(evt) => {
                   if (!evt.target.value.includes(`@`)) {
                     evt.preventDefault();
@@ -101,6 +102,7 @@ const SignIn = () => {
                 placeholder="Password"
                 name="user-password"
                 id="user-password"
+                data-testid="password"
                 onBlur={(evt) => {
                   if (!evt.target.value) {
                     evt.preventDefault();

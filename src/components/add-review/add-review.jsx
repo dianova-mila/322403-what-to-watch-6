@@ -51,14 +51,10 @@ const AddReview = ({onUserAvatarClick, onPlayButtonClick}) => {
   };
 
   useEffect(() => {
-    onLoadData(id);
-  }, [id]);
-
-  useEffect(() => {
-    if (!isOneMovieLoaded) {
+    if (movie.id !== id) {
       onLoadData(id);
     }
-  }, [isOneMovieLoaded]);
+  }, []);
 
   if (!isOneMovieLoaded) {
     return (

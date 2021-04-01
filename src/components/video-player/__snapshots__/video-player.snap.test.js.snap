@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VideoPlayer should render correctly 1`] = `
+<div>
+  <video
+    autoplay=""
+    height="175"
+    src="path"
+    width="280"
+  />
+</div>
+`;

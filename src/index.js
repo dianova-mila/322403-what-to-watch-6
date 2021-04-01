@@ -8,6 +8,8 @@ import {checkAuth} from "./store/api-actions";
 import App from "./components/app/app";
 import rootReducer from './store/root-reducer';
 import {redirect} from "./store/middlewares/redirect";
+import {Router as BrowserRouter} from 'react-router-dom';
+import browserHistory from "./browser-history";
 
 const api = createAPI(
     () => store.dispatch(requireAuthorization(false))
@@ -27,7 +29,9 @@ store.dispatch(checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <BrowserRouter history={browserHistory}>
+        <App />
+      </BrowserRouter>
     </Provider>,
     document.querySelector(`#root`)
 );
