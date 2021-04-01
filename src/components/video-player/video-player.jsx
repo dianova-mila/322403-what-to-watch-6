@@ -19,6 +19,5 @@ const VideoPlayer = ({src}) => {
 export default VideoPlayer;
 
 VideoPlayer.propTypes = {
-  isPlaying: PropTypes.bool.isRequired,
   src: PropTypes.string.isRequired
 };

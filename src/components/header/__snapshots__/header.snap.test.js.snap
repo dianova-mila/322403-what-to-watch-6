@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test header Header should render correctly when user authorized 1`] = `
+<div>
+  <header
+    class="page-header movie-card__head"
+  >
+    <div
+      class="logo"
+    >
+      <a
+        class="logo__link"
+        href="/"
+      >
+        <span
+          class="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          class="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          class="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </a>
+    </div>
+    <div
+      class="user-block"
+    >
+      <div
+        class="user-block__avatar"
+      >
+        <img
+          alt="User avatar"
+          height="63"
+          src="img/1.png"
+          width="63"
+        />
+      </div>
+    </div>
+  </header>
+</div>
+`;
+
+exports[`Test header Header should render correctly when user not authorized 1`] = `
+<div>
+  <header
+    class="page-header movie-card__head"
+  >
+    <div
+      class="logo"
+    >
+      <a
+        class="logo__link"
+        href="/"
+      >
+        <span
+          class="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          class="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          class="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </a>
+    </div>
+    <div
+      class="user-block"
+    >
+      <a
+        class="user-block__link"
+        href="/login"
+      >
+        Sign in
+      </a>
+    </div>
+  </header>
+</div>
+`;

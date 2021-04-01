@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SmallMovieCard should render correctly 1`] = `
+<div>
+  <article
+    class="small-movie-card catalog__movies-card"
+  >
+    <div
+      class="small-movie-card__image"
+    >
+      <img
+        alt="Macbeth"
+        height="175"
+        src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/macbeth.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      class="small-movie-card__title"
+    >
+      <a
+        class="small-movie-card__link"
+        href="/films/1/"
+      >
+        Macbeth
+      </a>
+    </h3>
+  </article>
+</div>
+`;
