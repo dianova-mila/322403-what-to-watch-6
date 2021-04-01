@@ -1,0 +1,1620 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test routing Render 'AddReview' when user navigate to '/films/:id/review' url 1`] = `
+<div>
+  <section
+    class="movie-card movie-card--full"
+    style="background-color: rgb(241, 233, 206);"
+  >
+    <div
+      class="movie-card__hero"
+    >
+      <div
+        class="movie-card__bg"
+      >
+        <img
+          alt="Macbeth"
+          src="https://assets.htmlacademy.ru/intensives/javascript-3/film/background/Macbeth.jpg"
+        />
+      </div>
+      <h1
+        class="visually-hidden"
+      >
+        WTW
+      </h1>
+      <header
+        class="page-header movie-card__head"
+      >
+        <div
+          class="logo"
+        >
+          <a
+            class="logo__link"
+            href="/"
+          >
+            <span
+              class="logo__letter logo__letter--1"
+            >
+              W
+            </span>
+            <span
+              class="logo__letter logo__letter--2"
+            >
+              T
+            </span>
+            <span
+              class="logo__letter logo__letter--3"
+            >
+              W
+            </span>
+          </a>
+        </div>
+        <div
+          class="user-block"
+        >
+          <div
+            class="user-block__avatar"
+          >
+            <img
+              alt="User avatar"
+              height="63"
+              src="img/1.png"
+              width="63"
+            />
+          </div>
+        </div>
+      </header>
+      <div
+        class="movie-card__wrap"
+      >
+        <div
+          class="movie-card__desc"
+        >
+          <h2
+            class="movie-card__title"
+          >
+            Macbeth
+          </h2>
+          <p
+            class="movie-card__meta"
+          >
+            <span
+              class="movie-card__genre"
+            >
+              Drama
+            </span>
+            <span
+              class="movie-card__year"
+            >
+              2015
+            </span>
+          </p>
+          <div
+            class="movie-card__buttons"
+          >
+            <button
+              class="btn btn--play movie-card__button"
+              type="button"
+            >
+              <svg
+                height="19"
+                viewBox="0 0 19 19"
+                width="19"
+              >
+                <use
+                  xlink:href="#play-s"
+                />
+              </svg>
+              <span>
+                Play
+              </span>
+            </button>
+            <button
+              class="btn btn--list movie-card__button"
+              type="button"
+            >
+              <svg
+                height="20"
+                viewBox="0 0 19 20"
+                width="19"
+              >
+                <use
+                  xlink:href="#add"
+                />
+              </svg>
+              <span>
+                My list
+              </span>
+            </button>
+            <a
+              class="btn movie-card__button"
+              href="/films/1/review"
+            >
+              Add review
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="movie-card__wrap movie-card__translate-top"
+    >
+      <div
+        class="movie-card__info"
+      >
+        <div
+          class="movie-card__poster movie-card__poster--big"
+        >
+          <img
+            alt="Macbeth"
+            height="327"
+            src="https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/Macbeth.jpg"
+            width="218"
+          />
+        </div>
+        <div
+          class="movie-card__desc"
+        >
+          <nav
+            class="movie-nav movie-card__nav"
+          >
+            <ul
+              class="movie-nav__list"
+            >
+              <li
+                class="movie-nav__item"
+              >
+                <a
+                  class="movie-nav__link"
+                  href="#"
+                >
+                  Overview
+                </a>
+              </li>
+              <li
+                class="movie-nav__item"
+              >
+                <a
+                  class="movie-nav__link"
+                  href="#"
+                >
+                  Details
+                </a>
+              </li>
+              <li
+                class="movie-nav__item movie-nav__item--active"
+              >
+                <a
+                  class="movie-nav__link"
+                  href="#"
+                >
+                  Reviews
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div
+            class="add-review"
+          >
+            
+            <form
+              action="#"
+              class="add-review__form"
+            >
+              <div
+                class="rating"
+              >
+                <div
+                  class="rating__stars"
+                >
+                  <input
+                    class="rating__input"
+                    id="star-1"
+                    name="rating"
+                    type="radio"
+                    value="1"
+                  />
+                  <label
+                    class="rating__label"
+                    for="star-1"
+                  >
+                    Rating 1
+                  </label>
+                  <input
+                    class="rating__input"
+                    id="star-2"
+                    name="rating"
+                    type="radio"
+                    value="2"
+                  />
+                  <label
+                    class="rating__label"
+                    for="star-2"
+                  >
+                    Rating 2
+                  </label>
+                  <input
+                    class="rating__input"
+                    id="star-3"
+                    name="rating"
+                    type="radio"
+                    value="3"
+                  />
+                  <label
+                    class="rating__label"
+                    for="star-3"
+                  >
+                    Rating 3
+                  </label>
+                  <input
+                    class="rating__input"
+                    id="star-4"
+                    name="rating"
+                    type="radio"
+                    value="4"
+                  />
+                  <label
+                    class="rating__label"
+                    for="star-4"
+                  >
+                    Rating 4
+                  </label>
+                  <input
+                    class="rating__input"
+                    id="star-5"
+                    name="rating"
+                    type="radio"
+                    value="5"
+                  />
+                  <label
+                    class="rating__label"
+                    for="star-5"
+                  >
+                    Rating 5
+                  </label>
+                  <input
+                    class="rating__input"
+                    id="star-6"
+                    name="rating"
+                    type="radio"
+                    value="6"
+                  />
+                  <label
+                    class="rating__label"
+                    for="star-6"
+                  >
+                    Rating 6
+                  </label>
+                  <input
+                    class="rating__input"
+                    id="star-7"
+                    name="rating"
+                    type="radio"
+                    value="7"
+                  />
+                  <label
+                    class="rating__label"
+                    for="star-7"
+                  >
+                    Rating 7
+                  </label>
+                  <input
+                    class="rating__input"
+                    id="star-8"
+                    name="rating"
+                    type="radio"
+                    value="8"
+                  />
+                  <label
+                    class="rating__label"
+                    for="star-8"
+                  >
+                    Rating 8
+                  </label>
+                  <input
+                    class="rating__input"
+                    id="star-9"
+                    name="rating"
+                    type="radio"
+                    value="9"
+                  />
+                  <label
+                    class="rating__label"
+                    for="star-9"
+                  >
+                    Rating 9
+                  </label>
+                  <input
+                    class="rating__input"
+                    id="star-10"
+                    name="rating"
+                    type="radio"
+                    value="10"
+                  />
+                  <label
+                    class="rating__label"
+                    for="star-10"
+                  >
+                    Rating 10
+                  </label>
+                </div>
+              </div>
+              <div
+                class="add-review__text"
+              >
+                <textarea
+                  class="add-review__textarea"
+                  id="review-text"
+                  maxlength="400"
+                  minlength="50"
+                  name="review-text"
+                  placeholder="Review text"
+                  required=""
+                />
+                <div
+                  class="add-review__submit"
+                >
+                  <button
+                    class="add-review__btn"
+                    disabled=""
+                    type="submit"
+                  >
+                    Post
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div
+            class="movie-card__reviews movie-card__row"
+          >
+            <div
+              class="movie-card__reviews-col"
+            >
+              <div
+                class="review"
+              >
+                <blockquote
+                  class="review__quote"
+                >
+                  <p
+                    class="review__text"
+                  >
+                    Poised to be an instant classic, almost everything about this film is phenomenal - the acting, the cinematography, the discography, etc.
+                  </p>
+                  <footer
+                    class="review__details"
+                  >
+                    <cite
+                      class="review__author"
+                    >
+                      Max
+                    </cite>
+                    <time
+                      class="review__date"
+                      datetime="{dayjs(new Date(item.date)).format(\`YYYY-MM-DD\`)}"
+                    >
+                      February 18, 2021
+                    </time>
+                  </footer>
+                </blockquote>
+                <div
+                  class="review__rating"
+                >
+                  3.9
+                </div>
+              </div>
+              <div
+                class="review"
+              >
+                <blockquote
+                  class="review__quote"
+                >
+                  <p
+                    class="review__text"
+                  >
+                    It was well acted, directed, and the music was good. But the story is yawn. Not trying to rip anybody but I checked my watch a dozen times during this movie.
+                  </p>
+                  <footer
+                    class="review__details"
+                  >
+                    <cite
+                      class="review__author"
+                    >
+                      Christina
+                    </cite>
+                    <time
+                      class="review__date"
+                      datetime="{dayjs(new Date(item.date)).format(\`YYYY-MM-DD\`)}"
+                    >
+                      February 17, 2021
+                    </time>
+                  </footer>
+                </blockquote>
+                <div
+                  class="review__rating"
+                >
+                  9.7
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div
+    class="page-content"
+  >
+    <section
+      class="catalog catalog--like-this"
+    >
+      <h2
+        class="catalog__title"
+      >
+        More like this
+      </h2>
+      <div
+        class="catalog__movies-list"
+      >
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="Macbeth"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/macbeth.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/1/"
+            >
+              Macbeth
+            </a>
+          </h3>
+        </article>
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="Orlando"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/orlando.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/3/"
+            >
+              Orlando
+            </a>
+          </h3>
+        </article>
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="Aviator"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/aviator.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/8/"
+            >
+              Aviator
+            </a>
+          </h3>
+        </article>
+      </div>
+    </section>
+    <footer
+      class="page-footer"
+    >
+      <div
+        class="logo"
+      >
+        <a
+          class="logo__link logo__link--light"
+          href="main.html"
+        >
+          <span
+            class="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            class="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            class="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <div
+        class="copyright"
+      >
+        <p>
+          © 2019 What to watch Ltd.
+        </p>
+      </div>
+    </footer>
+  </div>
+</div>
+`;
+
+exports[`Test routing Render 'MainPage' when user navigate to '/' url 1`] = `
+<div>
+  <section
+    class="movie-card"
+  >
+    <div
+      class="movie-card__bg"
+    >
+      <img
+        alt="Macbeth"
+        src="https://assets.htmlacademy.ru/intensives/javascript-3/film/background/Macbeth.jpg"
+      />
+    </div>
+    <h1
+      class="visually-hidden"
+    >
+      WTW
+    </h1>
+    <header
+      class="page-header movie-card__head"
+    >
+      <div
+        class="logo"
+      >
+        <a
+          class="logo__link"
+          href="/"
+        >
+          <span
+            class="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            class="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            class="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <div
+        class="user-block"
+      >
+        <div
+          class="user-block__avatar"
+        >
+          <img
+            alt="User avatar"
+            height="63"
+            src="img/1.png"
+            width="63"
+          />
+        </div>
+      </div>
+    </header>
+    <div
+      class="movie-card__wrap"
+    >
+      <div
+        class="movie-card__info"
+      >
+        <div
+          class="movie-card__poster"
+        >
+          <img
+            alt="Macbeth"
+            height="327"
+            src="https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/Macbeth.jpg"
+            width="218"
+          />
+        </div>
+        <div
+          class="movie-card__desc"
+        >
+          <h2
+            class="movie-card__title"
+          >
+            Macbeth
+          </h2>
+          <p
+            class="movie-card__meta"
+          >
+            <span
+              class="movie-card__genre"
+            >
+              Drama
+            </span>
+            <span
+              class="movie-card__year"
+            />
+          </p>
+          <div
+            class="movie-card__buttons"
+          >
+            <button
+              class="btn btn--play movie-card__button"
+              type="button"
+            >
+              <svg
+                height="19"
+                viewBox="0 0 19 19"
+                width="19"
+              >
+                <use
+                  xlink:href="#play-s"
+                />
+              </svg>
+              <span>
+                Play
+              </span>
+            </button>
+            <button
+              class="btn btn--list movie-card__button"
+              type="button"
+            >
+              <svg
+                height="20"
+                viewBox="0 0 19 20"
+                width="19"
+              >
+                <use
+                  xlink:href="#add"
+                />
+              </svg>
+              <span>
+                My list
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div
+    class="page-content"
+  >
+    <section
+      class="catalog"
+    >
+      <h2
+        class="catalog__title visually-hidden"
+      >
+        Catalog
+      </h2>
+      <ul
+        class="catalog__genres-list"
+      >
+        <li
+          class="catalog__genres-item catalog__genres-item--active"
+        >
+          <a
+            class="catalog__genres-link"
+            href="#"
+          >
+            All genres
+          </a>
+        </li>
+        <li
+          class="catalog__genres-item "
+        >
+          <a
+            class="catalog__genres-link"
+            href="#"
+          >
+            Drama
+          </a>
+        </li>
+        <li
+          class="catalog__genres-item "
+        >
+          <a
+            class="catalog__genres-link"
+            href="#"
+          >
+            Adventure
+          </a>
+        </li>
+        <li
+          class="catalog__genres-item "
+        >
+          <a
+            class="catalog__genres-link"
+            href="#"
+          >
+            Thriller
+          </a>
+        </li>
+        <li
+          class="catalog__genres-item "
+        >
+          <a
+            class="catalog__genres-link"
+            href="#"
+          >
+            Crime
+          </a>
+        </li>
+        <li
+          class="catalog__genres-item "
+        >
+          <a
+            class="catalog__genres-link"
+            href="#"
+          >
+            Fantasy
+          </a>
+        </li>
+      </ul>
+      <div
+        class="catalog__movies-list"
+      >
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="Macbeth"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/macbeth.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/1/"
+            >
+              Macbeth
+            </a>
+          </h3>
+        </article>
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="Seven Years in Tibet"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/seven-years-in-tibet.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/2/"
+            >
+              Seven Years in Tibet
+            </a>
+          </h3>
+        </article>
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="Orlando"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/orlando.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/3/"
+            >
+              Orlando
+            </a>
+          </h3>
+        </article>
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="Dardjeeling Limited"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/dardjeeling_limited.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/4/"
+            >
+              Dardjeeling Limited
+            </a>
+          </h3>
+        </article>
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="Shutter Island"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/shutter-island.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/5/"
+            >
+              Shutter Island
+            </a>
+          </h3>
+        </article>
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="No Country for Old Men"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/no-country-for-old-men.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/6/"
+            >
+              No Country for Old Men
+            </a>
+          </h3>
+        </article>
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="Fantastic Beasts: The Crimes of Grindelwald"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/7/"
+            >
+              Fantastic Beasts: The Crimes of Grindelwald
+            </a>
+          </h3>
+        </article>
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="Aviator"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/aviator.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/8/"
+            >
+              Aviator
+            </a>
+          </h3>
+        </article>
+      </div>
+      
+    </section>
+    <footer
+      class="page-footer"
+    >
+      <div
+        class="logo"
+      >
+        <a
+          class="logo__link logo__link--light"
+        >
+          <span
+            class="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            class="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            class="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <div
+        class="copyright"
+      >
+        <p>
+          © 2019 What to watch Ltd.
+        </p>
+      </div>
+    </footer>
+  </div>
+</div>
+`;
+
+exports[`Test routing Render 'MoviePage' when user navigate to '/films/:id' url 1`] = `
+<div>
+  <section
+    class="movie-card movie-card--full"
+    style="background-color: rgb(241, 233, 206);"
+  >
+    <div
+      class="movie-card__hero"
+    >
+      <div
+        class="movie-card__bg"
+      >
+        <img
+          alt="Macbeth"
+          src="https://assets.htmlacademy.ru/intensives/javascript-3/film/background/Macbeth.jpg"
+        />
+      </div>
+      <h1
+        class="visually-hidden"
+      >
+        WTW
+      </h1>
+      <header
+        class="page-header movie-card__head"
+      >
+        <div
+          class="logo"
+        >
+          <a
+            class="logo__link"
+            href="/"
+          >
+            <span
+              class="logo__letter logo__letter--1"
+            >
+              W
+            </span>
+            <span
+              class="logo__letter logo__letter--2"
+            >
+              T
+            </span>
+            <span
+              class="logo__letter logo__letter--3"
+            >
+              W
+            </span>
+          </a>
+        </div>
+        <div
+          class="user-block"
+        >
+          <div
+            class="user-block__avatar"
+          >
+            <img
+              alt="User avatar"
+              height="63"
+              src="img/1.png"
+              width="63"
+            />
+          </div>
+        </div>
+      </header>
+      <div
+        class="movie-card__wrap"
+      >
+        <div
+          class="movie-card__desc"
+        >
+          <h2
+            class="movie-card__title"
+          >
+            Macbeth
+          </h2>
+          <p
+            class="movie-card__meta"
+          >
+            <span
+              class="movie-card__genre"
+            >
+              Drama
+            </span>
+            <span
+              class="movie-card__year"
+            >
+              2015
+            </span>
+          </p>
+          <div
+            class="movie-card__buttons"
+          >
+            <button
+              class="btn btn--play movie-card__button"
+              type="button"
+            >
+              <svg
+                height="19"
+                viewBox="0 0 19 19"
+                width="19"
+              >
+                <use
+                  xlink:href="#play-s"
+                />
+              </svg>
+              <span>
+                Play
+              </span>
+            </button>
+            <button
+              class="btn btn--list movie-card__button"
+              type="button"
+            >
+              <svg
+                height="20"
+                viewBox="0 0 19 20"
+                width="19"
+              >
+                <use
+                  xlink:href="#add"
+                />
+              </svg>
+              <span>
+                My list
+              </span>
+            </button>
+            <a
+              class="btn movie-card__button"
+              href="/films/1/review"
+            >
+              Add review
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="movie-card__wrap movie-card__translate-top"
+    >
+      <div
+        class="movie-card__info"
+      >
+        <div
+          class="movie-card__poster movie-card__poster--big"
+        >
+          <img
+            alt="Macbeth"
+            height="327"
+            src="https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/Macbeth.jpg"
+            width="218"
+          />
+        </div>
+        <div
+          class="movie-card__desc"
+        >
+          <nav
+            class="movie-nav movie-card__nav"
+          >
+            <ul
+              class="movie-nav__list"
+            >
+              <li
+                class="movie-nav__item movie-nav__item--active"
+              >
+                <a
+                  class="movie-nav__link"
+                  href="#"
+                >
+                  Overview
+                </a>
+              </li>
+              <li
+                class="movie-nav__item false"
+              >
+                <a
+                  class="movie-nav__link"
+                  href="#"
+                >
+                  Details
+                </a>
+              </li>
+              <li
+                class="movie-nav__item false"
+              >
+                <a
+                  class="movie-nav__link"
+                  href="#"
+                >
+                  Reviews
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div
+            class="movie-rating"
+          >
+            <div
+              class="movie-rating__score"
+            >
+              3.3
+            </div>
+            <p
+              class="movie-rating__meta"
+            >
+              <span
+                class="movie-rating__level"
+              >
+                Normal
+              </span>
+              <span
+                class="movie-rating__count"
+              >
+                48798
+                 ratings
+              </span>
+            </p>
+          </div>
+          <div
+            class="movie-card__text"
+          >
+            <p>
+              Macbeth, the Thane of Glamis, receives a prophecy from a trio of witches that one day he will become King of Scotland. Consumed by ambition and spurred to action by his wife, Macbeth murders his king and takes the throne for himself.
+            </p>
+            <p
+              class="movie-card__director"
+            >
+              <strong>
+                Director: 
+                Justin Kurzel
+              </strong>
+            </p>
+            <p
+              class="movie-card__starring"
+            >
+              <strong>
+                Starring: 
+                Michael Fassbender, Marion Cotillard, Jack Madigan
+                 and other
+              </strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div
+    class="page-content"
+  >
+    <section
+      class="catalog catalog--like-this"
+    >
+      <h2
+        class="catalog__title"
+      >
+        More like this
+      </h2>
+      <div
+        class="catalog__movies-list"
+      >
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="Macbeth"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/macbeth.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/1/"
+            >
+              Macbeth
+            </a>
+          </h3>
+        </article>
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="Orlando"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/orlando.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/3/"
+            >
+              Orlando
+            </a>
+          </h3>
+        </article>
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="Aviator"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/aviator.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/8/"
+            >
+              Aviator
+            </a>
+          </h3>
+        </article>
+      </div>
+    </section>
+    <footer
+      class="page-footer"
+    >
+      <div
+        class="logo"
+      >
+        <a
+          class="logo__link"
+          href="/"
+        >
+          <span
+            class="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            class="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            class="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <div
+        class="copyright"
+      >
+        <p>
+          © 2019 What to watch Ltd.
+        </p>
+      </div>
+    </footer>
+  </div>
+</div>
+`;
+
+exports[`Test routing Render 'MyList' when user navigate to '/mylist' url 1`] = `
+<div>
+  <div
+    class="user-page"
+  >
+    <header
+      class="page-header user-page__head"
+    >
+      <div
+        class="logo"
+      >
+        <a
+          class="logo__link"
+          href="/"
+        >
+          <span
+            class="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            class="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            class="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <h1
+        class="page-title user-page__title"
+      >
+        Sign in
+      </h1>
+    </header>
+    <div
+      class="sign-in user-page__content"
+    >
+      <form
+        action="#"
+        class="sign-in__form"
+      >
+        <div
+          class="sign-in__fields"
+        >
+          <div
+            class="sign-in__field "
+          >
+            <input
+              class="sign-in__input"
+              data-testid="login"
+              id="user-email"
+              name="user-email"
+              placeholder="Email address"
+              type="email"
+            />
+            <label
+              class="sign-in__label visually-hidden"
+              for="user-email"
+            >
+              Email address
+            </label>
+          </div>
+          <div
+            class="sign-in__field "
+          >
+            <input
+              class="sign-in__input"
+              data-testid="password"
+              id="user-password"
+              name="user-password"
+              placeholder="Password"
+              type="password"
+            />
+            <label
+              class="sign-in__label visually-hidden"
+              for="user-password"
+            >
+              Password
+            </label>
+          </div>
+        </div>
+        <div
+          class="sign-in__submit"
+        >
+          <button
+            class="sign-in__btn"
+            type="submit"
+          >
+            Sign in
+          </button>
+        </div>
+      </form>
+    </div>
+    <footer
+      class="page-footer"
+    >
+      <div
+        class="logo"
+      >
+        <a
+          class="logo__link"
+          href="/"
+        >
+          <span
+            class="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            class="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            class="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <div
+        class="copyright"
+      >
+        <p>
+          © 2019 What to watch Ltd.
+        </p>
+      </div>
+    </footer>
+  </div>
+</div>
+`;
+
+exports[`Test routing Render 'Player' when user navigate to '/player/:id' url 1`] = `
+<div>
+  <div
+    class="player"
+  >
+    <video
+      autoplay=""
+      class="player__video"
+      poster="https://assets.htmlacademy.ru/intensives/javascript-3/film/background/Macbeth.jpg"
+      src="http://media.xiph.org/mango/tears_of_steel_1080p.webm"
+    />
+    <button
+      class="player__exit"
+      type="button"
+    >
+      Exit
+    </button>
+    <div
+      class="player__controls"
+    >
+      <div
+        class="player__controls-row"
+      >
+        <div
+          class="player__time"
+        >
+          <progress
+            class="player__progress"
+            max="100"
+            value="0"
+          />
+          <div
+            class="player__toggler"
+            style="left: 0%;"
+          >
+            Toggler
+          </div>
+        </div>
+        <div
+          class="player__time-value"
+        >
+          0:00:00
+        </div>
+      </div>
+      <div
+        class="player__controls-row"
+      >
+        <button
+          class="player__play"
+          type="button"
+        >
+          <svg
+            height="19"
+            viewBox="0 0 19 19"
+            width="19"
+          >
+            <use
+              xlink:href="#pause"
+            />
+          </svg>
+          <span>
+            Play
+          </span>
+        </button>
+        <div
+          class="player__name"
+        >
+          Macbeth
+        </div>
+        <button
+          class="player__full-screen"
+          type="button"
+        >
+          <svg
+            height="27"
+            viewBox="0 0 27 27"
+            width="27"
+          >
+            <use
+              xlink:href="#full-screen"
+            />
+          </svg>
+          <span>
+            Full screen
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
