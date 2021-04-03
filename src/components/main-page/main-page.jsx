@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import MovieList from "../movie-list/movie-list";
 import PropTypes from "prop-types";
 import GenreList from "../genre-list/genre-list";
-import ShowMore from "../show_more/show_more";
+import ShowMore from "../show-more/show-more";
 import Spinner from "../spinner/spinner";
 import {fetchMovies} from "../../store/api-actions";
 import {changeGenre, getMovieList} from "../../store/actions";
@@ -25,7 +25,7 @@ const getMoviesToShow = (movies, maxDisplayedMovies) => {
   return movies.slice(0, maxDisplayedMovies);
 };
 
-const MainPage = ({onUserAvatarClick, onPlayButtonClick}) => {
+const MainPage = ({onUserAvatarClick, onPlayButtonClick, onSmallMovieCardClick}) => {
   const {movies, movieList, currentGenre, isDataLoaded} = useSelector((state) => state.FILMS);
 
   const [displayedMovies, setDisplayedMovies] = useState({
@@ -96,7 +96,7 @@ const MainPage = ({onUserAvatarClick, onPlayButtonClick}) => {
             currentGenre={currentGenre}
           />
 
-          <MovieList films={displayedMovies.movies} />
+          <MovieList films={displayedMovies.movies} onSmallMovieCardClick={onSmallMovieCardClick}/>
 
           <ShowMore
             isActive={showMoreButtonActive}
@@ -133,7 +133,8 @@ const MainPage = ({onUserAvatarClick, onPlayButtonClick}) => {
 
 MainPage.propTypes = {
   onUserAvatarClick: PropTypes.func.isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired
+  onPlayButtonClick: PropTypes.func.isRequired,
+  onSmallMovieCardClick: PropTypes.func.isRequired
 };
 
 export default MainPage;

@@ -539,7 +539,7 @@ exports[`Test routing Render 'AddReview' when user navigate to '/films/:id/revie
       >
         <a
           class="logo__link logo__link--light"
-          href="main.html"
+          href="/"
         >
           <span
             class="logo__letter logo__letter--1"
@@ -1527,6 +1527,93 @@ exports[`Test routing Render 'MyList' when user navigate to '/mylist' url 1`] = 
 </div>
 `;
 
+exports[`Test routing Render 'NotFoundScreen' when user navigate to non-existent route 1`] = `
+<div>
+  <div
+    class="user-page"
+  >
+    <header
+      class="page-header user-page__head"
+    >
+      <div
+        class="logo"
+      >
+        <a
+          class="logo__link"
+          href="/"
+        >
+          <span
+            class="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            class="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            class="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <h1
+        class="page-title user-page__title"
+      >
+        404. Page not found
+      </h1>
+    </header>
+    <div
+      class="user-page__content"
+    >
+      <a
+        class="catalog__button"
+        href="/"
+      >
+        Вернуться на главную
+      </a>
+    </div>
+    <footer
+      class="page-footer"
+    >
+      <div
+        class="logo"
+      >
+        <a
+          class="logo__link"
+          href="/"
+        >
+          <span
+            class="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            class="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            class="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <div
+        class="copyright"
+      >
+        <p>
+          © 2019 What to watch Ltd.
+        </p>
+      </div>
+    </footer>
+  </div>
+</div>
+`;
+
 exports[`Test routing Render 'Player' when user navigate to '/player/:id' url 1`] = `
 <div>
   <div
@@ -1615,6 +1702,142 @@ exports[`Test routing Render 'Player' when user navigate to '/player/:id' url 1`
         </button>
       </div>
     </div>
+  </div>
+</div>
+`;
+
+exports[`Test routing Render 'SingIn' when user navigate to '/login' url 1`] = `
+<div>
+  <div
+    class="user-page"
+  >
+    <header
+      class="page-header user-page__head"
+    >
+      <div
+        class="logo"
+      >
+        <a
+          class="logo__link"
+          href="/"
+        >
+          <span
+            class="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            class="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            class="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <h1
+        class="page-title user-page__title"
+      >
+        Sign in
+      </h1>
+    </header>
+    <div
+      class="sign-in user-page__content"
+    >
+      <form
+        action="#"
+        class="sign-in__form"
+      >
+        <div
+          class="sign-in__fields"
+        >
+          <div
+            class="sign-in__field "
+          >
+            <input
+              class="sign-in__input"
+              data-testid="login"
+              id="user-email"
+              name="user-email"
+              placeholder="Email address"
+              type="email"
+            />
+            <label
+              class="sign-in__label visually-hidden"
+              for="user-email"
+            >
+              Email address
+            </label>
+          </div>
+          <div
+            class="sign-in__field "
+          >
+            <input
+              class="sign-in__input"
+              data-testid="password"
+              id="user-password"
+              name="user-password"
+              placeholder="Password"
+              type="password"
+            />
+            <label
+              class="sign-in__label visually-hidden"
+              for="user-password"
+            >
+              Password
+            </label>
+          </div>
+        </div>
+        <div
+          class="sign-in__submit"
+        >
+          <button
+            class="sign-in__btn"
+            type="submit"
+          >
+            Sign in
+          </button>
+        </div>
+      </form>
+    </div>
+    <footer
+      class="page-footer"
+    >
+      <div
+        class="logo"
+      >
+        <a
+          class="logo__link"
+          href="/"
+        >
+          <span
+            class="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            class="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            class="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <div
+        class="copyright"
+      >
+        <p>
+          © 2019 What to watch Ltd.
+        </p>
+      </div>
+    </footer>
   </div>
 </div>
 `;

@@ -8,7 +8,7 @@ import Spinner from "../spinner/spinner";
 import Header from "../header/header";
 import PropTypes from "prop-types";
 
-const MoviePage = ({onUserAvatarClick, onPlayButtonClick}) => {
+const MoviePage = ({onUserAvatarClick, onPlayButtonClick, onSmallMovieCardClick}) => {
   const {movie, comments, isOneMovieLoaded} = useSelector((state) => state.MOVIE);
   const {movies} = useSelector((state) => state.FILMS);
   const {authorizationStatus} = useSelector((state) => state.USER);
@@ -39,10 +39,14 @@ const MoviePage = ({onUserAvatarClick, onPlayButtonClick}) => {
   };
 
   useEffect(() => {
+    onLoadData(id);
+  }, []);
+
+  useEffect(() => {
     if (movie.id !== id) {
       onLoadData(id);
     }
-  }, []);
+  }, [id]);
 
   if (!isOneMovieLoaded) {
     return (
@@ -125,7 +129,7 @@ const MoviePage = ({onUserAvatarClick, onPlayButtonClick}) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <MovieList films={similarMovies} />
+          <MovieList films={similarMovies} onSmallMovieCardClick={onSmallMovieCardClick}/>
         </section>
 
         <footer className="page-footer">
@@ -148,7 +152,8 @@ const MoviePage = ({onUserAvatarClick, onPlayButtonClick}) => {
 
 MoviePage.propTypes = {
   onUserAvatarClick: PropTypes.func.isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired
+  onPlayButtonClick: PropTypes.func.isRequired,
+  onSmallMovieCardClick: PropTypes.func.isRequired
 };
 
 export default MoviePage;

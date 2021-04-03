@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from '@testing-library/react';
-import ShowMore from "./show_more";
+import ShowMore from "./show-more";
 
 const isActive = true;
 const onClick = jest.fn();

@@ -6,6 +6,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchOneMovie} from "../../store/api-actions";
 import Spinner from "../spinner/spinner";
 
+const MILLISECONDS_TO_SECOND = 1000;
+const MAX_PROGRESS = 100;
+
 const Player = ({onExitClick}) => {
   const {movie, isOneMovieLoaded} = useSelector((state) => state.MOVIE);
   const [isVideoPlayed, setIsVideoPlayed] = useState(true);
@@ -58,10 +61,10 @@ const Player = ({onExitClick}) => {
         autoPlay={true}
         onTimeUpdate={() => {
           setTimeElapsed(
-              ((videoRef.current.duration - videoRef.current.currentTime) * 1000),
+              ((videoRef.current.duration - videoRef.current.currentTime) * MILLISECONDS_TO_SECOND),
           );
           setProgress(
-              (Math.floor(videoRef.current.currentTime) / (Math.floor(videoRef.current.duration) / 100))
+              (Math.floor(videoRef.current.currentTime) / (Math.floor(videoRef.current.duration) / MAX_PROGRESS))
           );
         }}
         onClick={() => onPlayButtonClick()}

@@ -24,6 +24,7 @@ const App = (props) => {
             <MainPage
               onUserAvatarClick={() => history.push(`/mylist`)}
               onPlayButtonClick={(id) => history.push(`/player/${id}`)}
+              onSmallMovieCardClick={(id) => history.push(`/films/${id}`)}
             />
           );
         }}
@@ -34,7 +35,14 @@ const App = (props) => {
       </Route>
       <PrivateRoute exact
         path="/mylist"
-        render={() => <MyList films={films} />}
+        render={({history}) => {
+          return (
+            <MyList
+              films={films}
+              onSmallMovieCardClick={(id) => history.push(`/films/${id}`)}
+            />
+          );
+        }}
       >
       </PrivateRoute>
       <PrivateRoute exact
@@ -44,6 +52,7 @@ const App = (props) => {
             <AddReview
               onUserAvatarClick={() => history.push(`/mylist`)}
               onPlayButtonClick={(id) => history.push(`/player/${id}`)}
+              onSmallMovieCardClick={(id) => history.push(`/films/${id}`)}
             />
           );
         }}
@@ -57,6 +66,7 @@ const App = (props) => {
             <MoviePage
               onUserAvatarClick={() => history.push(`/mylist`)}
               onPlayButtonClick={(id) => history.push(`/player/${id}`)}
+              onSmallMovieCardClick={(id) => history.push(`/films/${id}`)}
             />
           );
         }}

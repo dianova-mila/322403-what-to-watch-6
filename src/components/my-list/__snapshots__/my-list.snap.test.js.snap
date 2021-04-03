@@ -1,0 +1,297 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyList should render correctly 1`] = `
+<div>
+  <div
+    class="user-page"
+  >
+    <header
+      class="page-header user-page__head"
+    >
+      <div
+        class="logo"
+      >
+        <a
+          class="logo__link"
+          href="/"
+        >
+          <span
+            class="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            class="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            class="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <h1
+        class="page-title user-page__title"
+      >
+        My list
+      </h1>
+      <div
+        class="user-block"
+      >
+        <div
+          class="user-block__avatar"
+        >
+          <img
+            alt="User avatar"
+            height="63"
+            src="img/1.png"
+            width="63"
+          />
+        </div>
+      </div>
+    </header>
+    <section
+      class="catalog"
+    >
+      <h2
+        class="catalog__title visually-hidden"
+      >
+        Catalog
+      </h2>
+      <div
+        class="catalog__movies-list"
+      >
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="Macbeth"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/macbeth.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/1/"
+            >
+              Macbeth
+            </a>
+          </h3>
+        </article>
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="Seven Years in Tibet"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/seven-years-in-tibet.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/2/"
+            >
+              Seven Years in Tibet
+            </a>
+          </h3>
+        </article>
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="Orlando"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/orlando.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/3/"
+            >
+              Orlando
+            </a>
+          </h3>
+        </article>
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="Dardjeeling Limited"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/dardjeeling_limited.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/4/"
+            >
+              Dardjeeling Limited
+            </a>
+          </h3>
+        </article>
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="Shutter Island"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/shutter-island.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/5/"
+            >
+              Shutter Island
+            </a>
+          </h3>
+        </article>
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="No Country for Old Men"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/no-country-for-old-men.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/6/"
+            >
+              No Country for Old Men
+            </a>
+          </h3>
+        </article>
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="Fantastic Beasts: The Crimes of Grindelwald"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/7/"
+            >
+              Fantastic Beasts: The Crimes of Grindelwald
+            </a>
+          </h3>
+        </article>
+        <article
+          class="small-movie-card catalog__movies-card"
+        >
+          <div
+            class="small-movie-card__image"
+          >
+            <img
+              alt="Aviator"
+              height="175"
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/aviator.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            class="small-movie-card__title"
+          >
+            <a
+              class="small-movie-card__link"
+              href="/films/8/"
+            >
+              Aviator
+            </a>
+          </h3>
+        </article>
+      </div>
+    </section>
+    <footer
+      class="page-footer"
+    >
+      <div
+        class="logo"
+      >
+        <a
+          class="logo__link"
+          href="/"
+        >
+          <span
+            class="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            class="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            class="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <div
+        class="copyright"
+      >
+        <p>
+          © 2019 What to watch Ltd.
+        </p>
+      </div>
+    </footer>
+  </div>
+</div>
+`;

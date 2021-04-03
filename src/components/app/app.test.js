@@ -1,5 +1,5 @@
 import React from "react";
-import {render, screen} from "@testing-library/react";
+import {render} from "@testing-library/react";
 import {Router} from "react-router-dom";
 import {createMemoryHistory} from "history";
 import * as redux from "react-redux";
@@ -14,6 +14,9 @@ const mockStore = configureStore({});
 describe(`Test routing`, () => {
   jest.spyOn(redux, `useSelector`);
   jest.spyOn(redux, `useDispatch`);
+
+  const fakeDispatch = jest.fn();
+  jest.spyOn(redux, `useDispatch`).mockImplementation(() => fakeDispatch);
 
   it(`Render 'MainPage' when user navigate to '/' url`, () => {
     const store = mockStore({
@@ -42,7 +45,7 @@ describe(`Test routing`, () => {
     const history = createMemoryHistory();
     history.push(`/login`);
 
-    render(
+    const {container} = render(
         <redux.Provider store={store}>
           <Router history={history}>
             <App />
@@ -50,8 +53,7 @@ describe(`Test routing`, () => {
         </redux.Provider>
     );
 
-    expect(screen.getByLabelText(`Email address`)).toBeInTheDocument();
-    expect(screen.getByLabelText(`Password`)).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   it(`Render 'MyList' when user navigate to '/mylist' url`, () => {
@@ -139,7 +141,7 @@ describe(`Test routing`, () => {
     const history = createMemoryHistory();
     history.push(`/non-existent-route`);
 
-    render(
+    const {container} = render(
         <redux.Provider store={mockStore({})}>
           <Router history={history}>
             <App />
@@ -147,8 +149,7 @@ describe(`Test routing`, () => {
         </redux.Provider>
     );
 
-    expect(screen.getByText(`404. Page not found`)).toBeInTheDocument();
-    expect(screen.getByText(`Вернуться на главную`)).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 });
 

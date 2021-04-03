@@ -1,6 +1,135 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MoviePageTabs should render correctly 1`] = `
+exports[`MoviePageTabs should render correctly MoviePageTabs should render correctly, when selected Details 1`] = `
+<div>
+  <div
+    class="movie-card__desc"
+  >
+    <nav
+      class="movie-nav movie-card__nav"
+    >
+      <ul
+        class="movie-nav__list"
+      >
+        <li
+          class="movie-nav__item false"
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Overview
+          </a>
+        </li>
+        <li
+          class="movie-nav__item movie-nav__item--active"
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Details
+          </a>
+        </li>
+        <li
+          class="movie-nav__item false"
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Reviews
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div
+      class="movie-card__text movie-card__row"
+    >
+      <div
+        class="movie-card__text-col"
+      >
+        <p
+          class="movie-card__details-item"
+        >
+          <strong
+            class="movie-card__details-name"
+          >
+            Director
+          </strong>
+          <span
+            class="movie-card__details-value"
+          >
+            Justin Kurzel
+          </span>
+        </p>
+        <p
+          class="movie-card__details-item"
+        >
+          <strong
+            class="movie-card__details-name"
+          >
+            Starring
+          </strong>
+          <span
+            class="movie-card__details-value"
+          >
+            Michael Fassbender, Marion Cotillard, Jack Madigan
+          </span>
+        </p>
+      </div>
+      <div
+        class="movie-card__text-col"
+      >
+        <p
+          class="movie-card__details-item"
+        >
+          <strong
+            class="movie-card__details-name"
+          >
+            Run Time
+          </strong>
+          <span
+            class="movie-card__details-value"
+          >
+            1h 53m
+          </span>
+        </p>
+        <p
+          class="movie-card__details-item"
+        >
+          <strong
+            class="movie-card__details-name"
+          >
+            Genre
+          </strong>
+          <span
+            class="movie-card__details-value"
+          >
+            Drama
+          </span>
+        </p>
+        <p
+          class="movie-card__details-item"
+        >
+          <strong
+            class="movie-card__details-name"
+          >
+            Released
+          </strong>
+          <span
+            class="movie-card__details-value"
+          >
+            2015
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`MoviePageTabs should render correctly MoviePageTabs should render correctly, when selected Overview 1`] = `
 <div>
   <div
     class="movie-card__desc"
@@ -90,6 +219,127 @@ exports[`MoviePageTabs should render correctly 1`] = `
            and other
         </strong>
       </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`MoviePageTabs should render correctly MoviePageTabs should render correctly, when selected Reviews 1`] = `
+<div>
+  <div
+    class="movie-card__desc"
+  >
+    <nav
+      class="movie-nav movie-card__nav"
+    >
+      <ul
+        class="movie-nav__list"
+      >
+        <li
+          class="movie-nav__item false"
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Overview
+          </a>
+        </li>
+        <li
+          class="movie-nav__item false"
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Details
+          </a>
+        </li>
+        <li
+          class="movie-nav__item movie-nav__item--active"
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Reviews
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div
+      class="movie-card__reviews movie-card__row"
+    >
+      <div
+        class="movie-card__reviews-col"
+      >
+        <div
+          class="review"
+        >
+          <blockquote
+            class="review__quote"
+          >
+            <p
+              class="review__text"
+            >
+              Poised to be an instant classic, almost everything about this film is phenomenal - the acting, the cinematography, the discography, etc.
+            </p>
+            <footer
+              class="review__details"
+            >
+              <cite
+                class="review__author"
+              >
+                Max
+              </cite>
+              <time
+                class="review__date"
+                datetime="{dayjs(new Date(item.date)).format(\`YYYY-MM-DD\`)}"
+              >
+                February 18, 2021
+              </time>
+            </footer>
+          </blockquote>
+          <div
+            class="review__rating"
+          >
+            3.9
+          </div>
+        </div>
+        <div
+          class="review"
+        >
+          <blockquote
+            class="review__quote"
+          >
+            <p
+              class="review__text"
+            >
+              It was well acted, directed, and the music was good. But the story is yawn. Not trying to rip anybody but I checked my watch a dozen times during this movie.
+            </p>
+            <footer
+              class="review__details"
+            >
+              <cite
+                class="review__author"
+              >
+                Christina
+              </cite>
+              <time
+                class="review__date"
+                datetime="{dayjs(new Date(item.date)).format(\`YYYY-MM-DD\`)}"
+              >
+                February 17, 2021
+              </time>
+            </footer>
+          </blockquote>
+          <div
+            class="review__rating"
+          >
+            9.7
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
