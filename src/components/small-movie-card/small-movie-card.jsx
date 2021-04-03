@@ -7,7 +7,7 @@ import VideoPlayer from "../video-player/video-player";
 const ONE_SECOND = 1000;
 
 const SmallMovieCard = (props) => {
-  const {movie} = props;
+  const {movie, onSmallMovieCardClick} = props;
   const [isPlayerActive, setIsPlayerActive] = useState(false);
   const [timer, setTimer] = useState(0);
 
@@ -23,7 +23,9 @@ const SmallMovieCard = (props) => {
         onMouseOut={() => {
           setIsPlayerActive(false);
           clearTimeout(timer);
-        }}>
+        }}
+        onClick={() => onSmallMovieCardClick(movie.id)}
+      >
         {isPlayerActive
           ? <VideoPlayer
             isPlaying={isPlayerActive}
@@ -44,7 +46,8 @@ const SmallMovieCard = (props) => {
 
 SmallMovieCard.propTypes = {
   movie: moviePropTypes,
-  onMouseOver: PropTypes.func
+  onMouseOver: PropTypes.func,
+  onSmallMovieCardClick: PropTypes.func
 };
 
 export default SmallMovieCard;

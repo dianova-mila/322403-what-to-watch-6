@@ -5,11 +5,13 @@ import {createMemoryHistory} from "history";
 import films from "../../mocks/films";
 import MovieList from "./movie-list";
 
+const onSmallMovieCardClick = jest.fn();
+
 it(`MovieList should render correctly`, () => {
   const history = createMemoryHistory();
   const {container} = render(
       <Router history={history}>
-        <MovieList films={films}/>
+        <MovieList films={films} onSmallMovieCardClick={onSmallMovieCardClick}/>
       </Router>
   );
 

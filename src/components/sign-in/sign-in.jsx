@@ -86,7 +86,9 @@ const SignIn = () => {
                 id="user-email"
                 data-testid="login"
                 onBlur={(evt) => {
-                  if (!evt.target.value.includes(`@`)) {
+                  const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+                  if (reg.test(evt.target.value) === false) {
                     evt.preventDefault();
                     setErrorMessage(`emailError`);
                   }

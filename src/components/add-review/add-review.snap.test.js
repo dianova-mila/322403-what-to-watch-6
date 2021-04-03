@@ -7,11 +7,19 @@ import {createMemoryHistory} from "history";
 import movie from "../../mocks/movie";
 import films from "../../mocks/films";
 import comments from "../../mocks/comments";
-import App from "../app/app";
+import AddReview from "./add-review";
+import * as redux from "react-redux";
 
 const mockStore = configureStore({});
 
+const onUserAvatarClick = jest.fn();
+const onPlayButtonClick = jest.fn();
+const onSmallMovieCardClick = jest.fn();
+
 it(`AddReview should render correctly`, () => {
+  const fakeDispatch = jest.fn();
+  jest.spyOn(redux, `useDispatch`).mockImplementation(() => fakeDispatch);
+
   const store = mockStore({
     USER: {authorizationStatus: true, userInfo: {avatarUrl: `img/1.png`}},
     FILMS: {movies: films},
@@ -24,7 +32,10 @@ it(`AddReview should render correctly`, () => {
   const {container} = render(
       <Provider store={store}>
         <Router history={history}>
-          <App />
+          <AddReview
+            onSmallMovieCardClick={onSmallMovieCardClick}
+            onPlayButtonClick={onPlayButtonClick}
+            onUserAvatarClick={onUserAvatarClick}/>
         </Router>
       </Provider>
   );

@@ -13,6 +13,7 @@ const userInfo = {avatarUrl: `img/1.png`};
 
 const onUserAvatarClick = jest.fn();
 const onPlayButtonClick = jest.fn();
+const onSmallMovieCardClick = jest.fn();
 const mockStore = configureStore({});
 
 
@@ -28,7 +29,11 @@ it(`MyList should render correctly`, () => {
         FILMS: {favoritesMovies: films, isFavoritesLoaded: true}
       })}>
         <Router history={history}>
-          <MyList onUserAvatarClick={onUserAvatarClick} onPlayButtonClick={onPlayButtonClick}/>
+          <MyList
+            onUserAvatarClick={onUserAvatarClick}
+            onPlayButtonClick={onPlayButtonClick}
+            onSmallMovieCardClick={onSmallMovieCardClick}
+          />
         </Router>
       </Provider>
   );

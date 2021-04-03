@@ -44,14 +44,10 @@ const checkAuth = () => (dispatch, _getState, api) => (
 
 const login = ({login: email, password}, onError) => (dispatch, _getState, api) => (
   api.post(`/login`, {email, password})
+    .then(({data}) => dispatch(loadUserInfo(adaptUserInfoToClient(data))))
     .then(() => dispatch(requireAuthorization(true)))
     .then(() => dispatch(redirectToRoute(`/`)))
     .catch(() => onError())
-);
-
-const logout = () => (dispatch, _getState, api) => (
-  api.get(`/logout`)
-    .then(() => dispatch(redirectToRoute(`/`)))
 );
 
 const addToFavorites = (id, status, onSuccess) => (dispatch, _getState, api) => (
@@ -66,4 +62,4 @@ const addReview = ({rating, comment}, id, onError) => (dispatch, _getState, api)
     .catch(() => onError())
 );
 
-export {fetchMovies, fetchOneMovie, fetchPromoMovie, fetchFavorites, addToFavorites, checkAuth, login, logout, addReview};
+export {fetchMovies, fetchOneMovie, fetchPromoMovie, fetchFavorites, addToFavorites, checkAuth, login, addReview};

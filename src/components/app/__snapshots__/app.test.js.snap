@@ -539,7 +539,7 @@ exports[`Test routing Render 'AddReview' when user navigate to '/films/:id/revie
       >
         <a
           class="logo__link logo__link--light"
-          href="main.html"
+          href="/"
         >
           <span
             class="logo__letter logo__letter--1"

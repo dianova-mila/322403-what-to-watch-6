@@ -15,6 +15,9 @@ describe(`Test routing`, () => {
   jest.spyOn(redux, `useSelector`);
   jest.spyOn(redux, `useDispatch`);
 
+  const fakeDispatch = jest.fn();
+  jest.spyOn(redux, `useDispatch`).mockImplementation(() => fakeDispatch);
+
   it(`Render 'MainPage' when user navigate to '/' url`, () => {
     const store = mockStore({
       FILMS: {movies: films, movieList: films, currentGenre: `All genres`, isDataLoaded: true},

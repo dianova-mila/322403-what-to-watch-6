@@ -9,7 +9,7 @@ import Header from "../header/header";
 import MovieList from "../movie-list/movie-list";
 import PropTypes from "prop-types";
 
-const AddReview = ({onUserAvatarClick, onPlayButtonClick}) => {
+const AddReview = ({onUserAvatarClick, onPlayButtonClick, onSmallMovieCardClick}) => {
   const {movie, comments, isOneMovieLoaded} = useSelector((state) => state.MOVIE);
   const {movies} = useSelector((state) => state.FILMS);
 
@@ -54,6 +54,10 @@ const AddReview = ({onUserAvatarClick, onPlayButtonClick}) => {
     if (movie.id !== id) {
       onLoadData(id);
     }
+  }, [id]);
+
+  useEffect(() => {
+    onLoadData(id);
   }, []);
 
   if (!isOneMovieLoaded) {
@@ -104,7 +108,7 @@ const AddReview = ({onUserAvatarClick, onPlayButtonClick}) => {
                 </button>
                 <button className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add" />
+                    <use xlinkHref={movie.isFavorite ? `#in-list` : `#add`} />
                   </svg>
                   <span>My list</span>
                 </button>
@@ -234,16 +238,16 @@ const AddReview = ({onUserAvatarClick, onPlayButtonClick}) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <MovieList films={similarMovies} />
+          <MovieList films={similarMovies} onSmallMovieCardClick={onSmallMovieCardClick}/>
         </section>
 
         <footer className="page-footer">
           <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
+            <Link to="/" className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">
@@ -257,7 +261,8 @@ const AddReview = ({onUserAvatarClick, onPlayButtonClick}) => {
 
 AddReview.propTypes = {
   onUserAvatarClick: PropTypes.func.isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired
+  onPlayButtonClick: PropTypes.func.isRequired,
+  onSmallMovieCardClick: PropTypes.func.isRequired
 };
 
 export default AddReview;

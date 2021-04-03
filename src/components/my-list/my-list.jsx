@@ -4,9 +4,10 @@ import filmsPropTypes from "../../prop-types/films-prop-types";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import Spinner from "../spinner/spinner";
-import {fetchFavorites, logout} from "../../store/api-actions";
+import PropTypes from "prop-types";
+import {fetchFavorites} from "../../store/api-actions";
 
-const MyList = () => {
+const MyList = ({onSmallMovieCardClick}) => {
   const {favoritesMovies, isFavoritesLoaded} = useSelector((state) => state.FILMS);
   const {userInfo} = useSelector((state) => state.USER);
 
@@ -40,7 +41,7 @@ const MyList = () => {
         <h1 className="page-title user-page__title">My list</h1>
 
         <div className="user-block">
-          <div className="user-block__avatar" onClick={() => dispatch(logout()) /* для тестирования */}>
+          <div className="user-block__avatar">
             <img
               src={userInfo.avatarUrl}
               alt="User avatar"
@@ -53,7 +54,7 @@ const MyList = () => {
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <MovieList films={favoritesMovies} />
+        <MovieList films={favoritesMovies} onSmallMovieCardClick={onSmallMovieCardClick}/>
       </section>
 
       <footer className="page-footer">
@@ -74,7 +75,8 @@ const MyList = () => {
 };
 
 MyList.propTypes = {
-  films: filmsPropTypes
+  films: filmsPropTypes,
+  onSmallMovieCardClick: PropTypes.func.isRequired,
 };
 
 export default MyList;

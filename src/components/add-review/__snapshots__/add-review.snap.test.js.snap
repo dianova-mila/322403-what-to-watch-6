@@ -539,7 +539,7 @@ exports[`AddReview should render correctly 1`] = `
       >
         <a
           class="logo__link logo__link--light"
-          href="main.html"
+          href="/"
         >
           <span
             class="logo__letter logo__letter--1"

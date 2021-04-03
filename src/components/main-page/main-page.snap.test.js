@@ -10,6 +10,7 @@ import films from "../../mocks/films";
 
 const onUserAvatarClick = jest.fn();
 const onPlayButtonClick = jest.fn();
+const onSmallMovieCardClick = jest.fn();
 const mockStore = configureStore({});
 
 
@@ -24,7 +25,11 @@ it(`MainPage should render correctly`, () => {
         USER: {authorizationStatus: true, userInfo: {avatarUrl: `img/1.png`}}
       })}>
         <Router history={history}>
-          <MainPage onUserAvatarClick={onUserAvatarClick} onPlayButtonClick={onPlayButtonClick}/>
+          <MainPage
+            onUserAvatarClick={onUserAvatarClick}
+            onPlayButtonClick={onPlayButtonClick}
+            onSmallMovieCardClick={onSmallMovieCardClick}
+          />
         </Router>
       </Provider>
   );
