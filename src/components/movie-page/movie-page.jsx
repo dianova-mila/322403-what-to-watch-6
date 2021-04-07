@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Spinner from "../spinner/spinner";
 import Header from "../header/header";
 import PropTypes from "prop-types";
+import {Tabs} from "../../const";
 
 const MoviePage = ({onUserAvatarClick, onPlayButtonClick, onSmallMovieCardClick}) => {
   const {movie, comments, isOneMovieLoaded} = useSelector((state) => state.MOVIE);
@@ -119,7 +120,7 @@ const MoviePage = ({onUserAvatarClick, onPlayButtonClick, onSmallMovieCardClick}
                 height="327"/>
             </div>
 
-            <MoviePageTabs movie={movie} comments={comments}/>
+            <MoviePageTabs movie={movie} comments={comments} defaultTab={Tabs.OVERVIEW}/>
 
           </div>
         </div>

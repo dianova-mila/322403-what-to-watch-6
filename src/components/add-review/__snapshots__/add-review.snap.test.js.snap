@@ -162,7 +162,7 @@ exports[`AddReview should render correctly 1`] = `
               class="movie-nav__list"
             >
               <li
-                class="movie-nav__item"
+                class="movie-nav__item "
               >
                 <a
                   class="movie-nav__link"
@@ -172,7 +172,7 @@ exports[`AddReview should render correctly 1`] = `
                 </a>
               </li>
               <li
-                class="movie-nav__item"
+                class="movie-nav__item "
               >
                 <a
                   class="movie-nav__link"

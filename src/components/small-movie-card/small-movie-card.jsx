@@ -24,7 +24,13 @@ const SmallMovieCard = (props) => {
           setIsPlayerActive(false);
           clearTimeout(timer);
         }}
-        onClick={() => onSmallMovieCardClick(movie.id)}
+        onClick={() => {
+          if (timer) {
+            clearTimeout(timer);
+          }
+
+          onSmallMovieCardClick(movie.id);
+        }}
       >
         {isPlayerActive
           ? <VideoPlayer
@@ -38,7 +44,16 @@ const SmallMovieCard = (props) => {
         }
       </div>
       <h3 className="small-movie-card__title">
-        <Link className="small-movie-card__link" to={`/films/${movie.id}/`}>{movie.name}</Link>
+        <Link
+          className="small-movie-card__link"
+          to={`/films/${movie.id}/`}
+          onClick={() => {
+            if (timer) {
+              clearTimeout(timer);
+            }
+          }}
+        >{movie.name}
+        </Link>
       </h3>
     </article>
   );

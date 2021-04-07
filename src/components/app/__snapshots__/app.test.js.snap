@@ -162,7 +162,7 @@ exports[`Test routing Render 'AddReview' when user navigate to '/films/:id/revie
               class="movie-nav__list"
             >
               <li
-                class="movie-nav__item"
+                class="movie-nav__item "
               >
                 <a
                   class="movie-nav__link"
@@ -172,7 +172,7 @@ exports[`Test routing Render 'AddReview' when user navigate to '/films/:id/revie
                 </a>
               </li>
               <li
-                class="movie-nav__item"
+                class="movie-nav__item "
               >
                 <a
                   class="movie-nav__link"
@@ -1191,7 +1191,7 @@ exports[`Test routing Render 'MoviePage' when user navigate to '/films/:id' url 
                 </a>
               </li>
               <li
-                class="movie-nav__item false"
+                class="movie-nav__item "
               >
                 <a
                   class="movie-nav__link"
@@ -1201,7 +1201,7 @@ exports[`Test routing Render 'MoviePage' when user navigate to '/films/:id' url 
                 </a>
               </li>
               <li
-                class="movie-nav__item false"
+                class="movie-nav__item "
               >
                 <a
                   class="movie-nav__link"

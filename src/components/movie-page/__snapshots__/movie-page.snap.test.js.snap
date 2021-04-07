@@ -172,7 +172,7 @@ exports[`MoviePage should render correctly 1`] = `
                 </a>
               </li>
               <li
-                class="movie-nav__item false"
+                class="movie-nav__item "
               >
                 <a
                   class="movie-nav__link"
@@ -182,7 +182,7 @@ exports[`MoviePage should render correctly 1`] = `
                 </a>
               </li>
               <li
-                class="movie-nav__item false"
+                class="movie-nav__item "
               >
                 <a
                   class="movie-nav__link"

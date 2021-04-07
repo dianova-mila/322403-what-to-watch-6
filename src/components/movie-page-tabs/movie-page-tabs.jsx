@@ -1,20 +1,16 @@
 import React, {Fragment, useState} from "react";
 import dayjs from "dayjs";
+import PropTypes from "prop-types";
 import moviePropTypes from "../../prop-types/movie-prop-types";
+import AddReviewForm from "../add-review-form/add-review-form";
 import commentsPropTypes from "../../prop-types/comments-prop-types";
-
+import {Tabs} from "../../const";
 
 const Rating = {
   NORMAL: 3,
   GOOD: 5,
   VERY_GOOD: 8,
   AWESOME: 10
-};
-
-const Tabs = {
-  OVERVIEW: `overview`,
-  DETAILS: `details`,
-  REVIEWS: `reviews`,
 };
 
 const MINUTE_IN_HOUR = 60;
@@ -39,8 +35,8 @@ const getRunTime = (runTimeInMinute) => {
 };
 
 const MoviePageTabs = (props) => {
-  const {movie, comments} = props;
-  const [activeTab, setActiveTab] = useState(Tabs.OVERVIEW);
+  const {movie, comments, defaultTab} = props;
+  const [activeTab, setActiveTab] = useState(defaultTab);
 
   const renderTab = (currentTab) => {
     switch (currentTab) {
@@ -100,26 +96,30 @@ const MoviePageTabs = (props) => {
 
       case Tabs.REVIEWS:
         return (
-          <div className="movie-card__reviews movie-card__row">
-            <div className="movie-card__reviews-col">
-              {comments.map((item) =>
-                <div className="review" key={`comment-${item.id}`}>
-                  <blockquote className="review__quote">
-                    <p className="review__text">{item.comment}</p>
+          <Fragment>
+            {defaultTab === Tabs.REVIEWS && <AddReviewForm id={movie.id}/>}
+            <div className="movie-card__reviews movie-card__row">
 
-                    <footer className="review__details">
-                      <cite className="review__author">{item.user.name}</cite>
-                      <time className="review__date" dateTime="{dayjs(new Date(item.date)).format(`YYYY-MM-DD`)}">{
-                        dayjs(new Date(item.date)).format(`MMMM DD, YYYY`)
-                      }</time>
-                    </footer>
-                  </blockquote>
+              <div className="movie-card__reviews-col">
+                {comments.map((item) =>
+                  <div className="review" key={`comment-${item.id}`}>
+                    <blockquote className="review__quote">
+                      <p className="review__text">{item.comment}</p>
 
-                  <div className="review__rating">{item.rating}</div>
-                </div>
-              )}
+                      <footer className="review__details">
+                        <cite className="review__author">{item.user.name}</cite>
+                        <time className="review__date" dateTime="{dayjs(new Date(item.date)).format(`YYYY-MM-DD`)}">{
+                          dayjs(new Date(item.date)).format(`MMMM DD, YYYY`)
+                        }</time>
+                      </footer>
+                    </blockquote>
+
+                    <div className="review__rating">{item.rating}</div>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
+          </Fragment>
         );
     }
 
@@ -130,7 +130,7 @@ const MoviePageTabs = (props) => {
     <div className="movie-card__desc">
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
-          <li className={`movie-nav__item ${activeTab === Tabs.OVERVIEW && `movie-nav__item--active`}`}>
+          <li className={`movie-nav__item ${activeTab === Tabs.OVERVIEW ? `movie-nav__item--active` : ``}`}>
             <a
               href="#"
               className="movie-nav__link"
@@ -140,7 +140,7 @@ const MoviePageTabs = (props) => {
               }}
             >Overview</a>
           </li>
-          <li className={`movie-nav__item ${activeTab === Tabs.DETAILS && `movie-nav__item--active`}`}>
+          <li className={`movie-nav__item ${activeTab === Tabs.DETAILS ? `movie-nav__item--active` : ``}`}>
             <a
               href="#"
               className="movie-nav__link"
@@ -150,7 +150,7 @@ const MoviePageTabs = (props) => {
               }}
             >Details</a>
           </li>
-          <li className={`movie-nav__item ${activeTab === Tabs.REVIEWS && `movie-nav__item--active`}`}>
+          <li className={`movie-nav__item ${activeTab === Tabs.REVIEWS ? `movie-nav__item--active` : ``}`}>
             <a
               href="#"
               className="movie-nav__link"
@@ -172,5 +172,6 @@ export default MoviePageTabs;
 
 MoviePageTabs.propTypes = {
   movie: moviePropTypes,
-  comments: commentsPropTypes
+  comments: commentsPropTypes,
+  defaultTab: PropTypes.string.isRequired
 };

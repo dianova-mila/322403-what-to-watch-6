@@ -8,6 +8,7 @@ import App from "./app";
 import films from "../../mocks/films";
 import movie from "../../mocks/movie";
 import comments from "../../mocks/comments";
+import {ALL_GENRES} from "../../const";
 
 const mockStore = configureStore({});
 
@@ -20,7 +21,7 @@ describe(`Test routing`, () => {
 
   it(`Render 'MainPage' when user navigate to '/' url`, () => {
     const store = mockStore({
-      FILMS: {movies: films, movieList: films, currentGenre: `All genres`, isDataLoaded: true},
+      FILMS: {movies: films, movieList: films, currentGenre: ALL_GENRES, isDataLoaded: true},
       MOVIE: {promoMovie: movie, isPromoMovieLoaded: true},
       USER: {authorizationStatus: true, userInfo: {avatarUrl: `img/1.png`}}
     });

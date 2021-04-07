@@ -79,7 +79,7 @@ const Player = ({onExitClick}) => {
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
-            <progress className="player__progress" value={progress} max="100" />
+            <progress className="player__progress" value={progress || 0} max="100" />
             <div className="player__toggler" style={{left: `${progress}%`}}>Toggler</div>
           </div>
           <div className="player__time-value">{dayjs.duration(timeElapsed).format(`H:mm:ss`)}</div>

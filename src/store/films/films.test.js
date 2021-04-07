@@ -5,6 +5,7 @@ import films from "../../mocks/films";
 import {ActionType} from "../actions";
 import {fetchMovies, fetchFavorites} from "../api-actions";
 import {adaptMoviesToClient} from "../adapter";
+import {ALL_GENRES} from "../../const";
 
 const api = createAPI(() => {});
 
@@ -61,7 +62,7 @@ describe(`Reducer 'films' should work correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(filmsReducer(undefined, {}))
       .toEqual({
-        currentGenre: `All genres`,
+        currentGenre: ALL_GENRES,
         favoritesMovies: [],
         isDataLoaded: false,
         isFavoritesLoaded: false,
@@ -93,7 +94,7 @@ describe(`Reducer 'films' should work correctly`, () => {
   });
 
   it(`Reducer should update current genre movies by a given value`, () => {
-    const state = {currentGenre: `All genres`};
+    const state = {currentGenre: ALL_GENRES};
     const changeGenre = {
       type: ActionType.CHANGE_GENRE,
       payload: `Crime`

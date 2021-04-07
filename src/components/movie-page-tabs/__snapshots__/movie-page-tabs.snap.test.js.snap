@@ -1,5 +1,298 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`MoviePageTabs should render correctly MoviePageTabs should render correctly in AddReview page 1`] = `
+<div>
+  <div
+    class="movie-card__desc"
+  >
+    <nav
+      class="movie-nav movie-card__nav"
+    >
+      <ul
+        class="movie-nav__list"
+      >
+        <li
+          class="movie-nav__item "
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Overview
+          </a>
+        </li>
+        <li
+          class="movie-nav__item "
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Details
+          </a>
+        </li>
+        <li
+          class="movie-nav__item movie-nav__item--active"
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Reviews
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div
+      class="add-review"
+    >
+      
+      <form
+        action="#"
+        class="add-review__form"
+      >
+        <div
+          class="rating"
+        >
+          <div
+            class="rating__stars"
+          >
+            <input
+              class="rating__input"
+              id="star-1"
+              name="rating"
+              type="radio"
+              value="1"
+            />
+            <label
+              class="rating__label"
+              for="star-1"
+            >
+              Rating 1
+            </label>
+            <input
+              class="rating__input"
+              id="star-2"
+              name="rating"
+              type="radio"
+              value="2"
+            />
+            <label
+              class="rating__label"
+              for="star-2"
+            >
+              Rating 2
+            </label>
+            <input
+              class="rating__input"
+              id="star-3"
+              name="rating"
+              type="radio"
+              value="3"
+            />
+            <label
+              class="rating__label"
+              for="star-3"
+            >
+              Rating 3
+            </label>
+            <input
+              class="rating__input"
+              id="star-4"
+              name="rating"
+              type="radio"
+              value="4"
+            />
+            <label
+              class="rating__label"
+              for="star-4"
+            >
+              Rating 4
+            </label>
+            <input
+              class="rating__input"
+              id="star-5"
+              name="rating"
+              type="radio"
+              value="5"
+            />
+            <label
+              class="rating__label"
+              for="star-5"
+            >
+              Rating 5
+            </label>
+            <input
+              class="rating__input"
+              id="star-6"
+              name="rating"
+              type="radio"
+              value="6"
+            />
+            <label
+              class="rating__label"
+              for="star-6"
+            >
+              Rating 6
+            </label>
+            <input
+              class="rating__input"
+              id="star-7"
+              name="rating"
+              type="radio"
+              value="7"
+            />
+            <label
+              class="rating__label"
+              for="star-7"
+            >
+              Rating 7
+            </label>
+            <input
+              class="rating__input"
+              id="star-8"
+              name="rating"
+              type="radio"
+              value="8"
+            />
+            <label
+              class="rating__label"
+              for="star-8"
+            >
+              Rating 8
+            </label>
+            <input
+              class="rating__input"
+              id="star-9"
+              name="rating"
+              type="radio"
+              value="9"
+            />
+            <label
+              class="rating__label"
+              for="star-9"
+            >
+              Rating 9
+            </label>
+            <input
+              class="rating__input"
+              id="star-10"
+              name="rating"
+              type="radio"
+              value="10"
+            />
+            <label
+              class="rating__label"
+              for="star-10"
+            >
+              Rating 10
+            </label>
+          </div>
+        </div>
+        <div
+          class="add-review__text"
+        >
+          <textarea
+            class="add-review__textarea"
+            id="review-text"
+            maxlength="400"
+            minlength="50"
+            name="review-text"
+            placeholder="Review text"
+            required=""
+          />
+          <div
+            class="add-review__submit"
+          >
+            <button
+              class="add-review__btn"
+              disabled=""
+              type="submit"
+            >
+              Post
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div
+      class="movie-card__reviews movie-card__row"
+    >
+      <div
+        class="movie-card__reviews-col"
+      >
+        <div
+          class="review"
+        >
+          <blockquote
+            class="review__quote"
+          >
+            <p
+              class="review__text"
+            >
+              Poised to be an instant classic, almost everything about this film is phenomenal - the acting, the cinematography, the discography, etc.
+            </p>
+            <footer
+              class="review__details"
+            >
+              <cite
+                class="review__author"
+              >
+                Max
+              </cite>
+              <time
+                class="review__date"
+                datetime="{dayjs(new Date(item.date)).format(\`YYYY-MM-DD\`)}"
+              >
+                February 18, 2021
+              </time>
+            </footer>
+          </blockquote>
+          <div
+            class="review__rating"
+          >
+            3.9
+          </div>
+        </div>
+        <div
+          class="review"
+        >
+          <blockquote
+            class="review__quote"
+          >
+            <p
+              class="review__text"
+            >
+              It was well acted, directed, and the music was good. But the story is yawn. Not trying to rip anybody but I checked my watch a dozen times during this movie.
+            </p>
+            <footer
+              class="review__details"
+            >
+              <cite
+                class="review__author"
+              >
+                Christina
+              </cite>
+              <time
+                class="review__date"
+                datetime="{dayjs(new Date(item.date)).format(\`YYYY-MM-DD\`)}"
+              >
+                February 17, 2021
+              </time>
+            </footer>
+          </blockquote>
+          <div
+            class="review__rating"
+          >
+            9.7
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`MoviePageTabs should render correctly MoviePageTabs should render correctly, when selected Details 1`] = `
 <div>
   <div
@@ -12,7 +305,7 @@ exports[`MoviePageTabs should render correctly MoviePageTabs should render corre
         class="movie-nav__list"
       >
         <li
-          class="movie-nav__item false"
+          class="movie-nav__item "
         >
           <a
             class="movie-nav__link"
@@ -32,7 +325,7 @@ exports[`MoviePageTabs should render correctly MoviePageTabs should render corre
           </a>
         </li>
         <li
-          class="movie-nav__item false"
+          class="movie-nav__item "
         >
           <a
             class="movie-nav__link"
@@ -151,7 +444,7 @@ exports[`MoviePageTabs should render correctly MoviePageTabs should render corre
           </a>
         </li>
         <li
-          class="movie-nav__item false"
+          class="movie-nav__item "
         >
           <a
             class="movie-nav__link"
@@ -161,7 +454,7 @@ exports[`MoviePageTabs should render correctly MoviePageTabs should render corre
           </a>
         </li>
         <li
-          class="movie-nav__item false"
+          class="movie-nav__item "
         >
           <a
             class="movie-nav__link"
@@ -236,7 +529,7 @@ exports[`MoviePageTabs should render correctly MoviePageTabs should render corre
         class="movie-nav__list"
       >
         <li
-          class="movie-nav__item false"
+          class="movie-nav__item "
         >
           <a
             class="movie-nav__link"
@@ -246,7 +539,7 @@ exports[`MoviePageTabs should render correctly MoviePageTabs should render corre
           </a>
         </li>
         <li
-          class="movie-nav__item false"
+          class="movie-nav__item "
         >
           <a
             class="movie-nav__link"

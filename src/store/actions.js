@@ -1,4 +1,5 @@
 import {createAction} from "@reduxjs/toolkit";
+import {ALL_GENRES} from "../const";
 
 const ActionType = {
   CHANGE_GENRE: `films/changeGenre`,
@@ -20,7 +21,7 @@ const changeGenre = createAction(ActionType.CHANGE_GENRE, (currentGenre) => {
 });
 
 const getMovieList = createAction(ActionType.GET_MOVIE_LIST, (currentGenre, movies) => {
-  if (currentGenre === `All genres`) {
+  if (currentGenre === ALL_GENRES) {
     return {
       payload: movies
     };

@@ -1,8 +1,9 @@
 import {createReducer} from "@reduxjs/toolkit";
 import {changeGenre, loadMovies, getMovieList, loadFavorites} from "../actions";
+import {ALL_GENRES} from "../../const";
 
 const initialState = {
-  currentGenre: `All genres`,
+  currentGenre: ALL_GENRES,
   movieList: [],
   movies: [],
   isDataLoaded: false,

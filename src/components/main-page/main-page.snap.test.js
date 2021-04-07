@@ -7,6 +7,7 @@ import {createMemoryHistory} from "history";
 import MainPage from "./main-page";
 import movie from "../../mocks/movie";
 import films from "../../mocks/films";
+import {ALL_GENRES} from "../../const";
 
 const onUserAvatarClick = jest.fn();
 const onPlayButtonClick = jest.fn();
@@ -20,7 +21,7 @@ it(`MainPage should render correctly`, () => {
 
   const {container} = render(
       <Provider store={mockStore({
-        FILMS: {movies: films, movieList: films, currentGenre: `All genres`, isDataLoaded: true},
+        FILMS: {movies: films, movieList: films, currentGenre: ALL_GENRES, isDataLoaded: true},
         MOVIE: {promoMovie: movie, isPromoMovieLoaded: true},
         USER: {authorizationStatus: true, userInfo: {avatarUrl: `img/1.png`}}
       })}>

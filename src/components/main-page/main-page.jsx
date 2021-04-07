@@ -8,12 +8,13 @@ import Spinner from "../spinner/spinner";
 import {fetchMovies} from "../../store/api-actions";
 import {changeGenre, getMovieList} from "../../store/actions";
 import MovieCard from "../movie-card/movie-card";
+import {ALL_GENRES} from "../../const";
 
 const MOVIES_CARDS_IN_STEP = 8;
 
 const collectGenres = (films) => {
   const genres = [...new Set(films.map((item) => item.genre))];
-  genres.unshift(`All genres`);
+  genres.unshift(ALL_GENRES);
   return genres;
 };
 

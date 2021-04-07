@@ -14,6 +14,7 @@ import {
 import films from "../mocks/films";
 import comments from "../mocks/comments";
 import movie from "../mocks/movie";
+import {ALL_GENRES} from "../const";
 
 describe(`Action creators work correctly`, () => {
   it(`Action creator for changing genre returns correct action`, () => {
@@ -72,7 +73,7 @@ describe(`Action creators work correctly`, () => {
       payload: films,
     };
 
-    expect(getMovieList(`All genres`, films)).toEqual(expectedAction);
+    expect(getMovieList(ALL_GENRES, films)).toEqual(expectedAction);
   });
 
   it(`Action creator for getting loading comments returns correct`, () => {
